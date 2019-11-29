@@ -1,0 +1,27 @@
+﻿<Window x:Class="TaskOrganizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskOrganizer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Style="{StaticResource CoolWindow}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding TaskList}" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="#FF05344D" Foreground="#FF1CF307">
+        </ListView>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label x:Name="label" Content="Enter new task" HorizontalAlignment="Left" Margin="147,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.735,0.395"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="303" Margin="42,10,0,0"/>
+        </StackPanel>
+        <Button x:Name="button" Content="Save task" Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Center" Width="75" Style="{StaticResource CoolButton}" Click="Button_Click"/>
+    </Grid>
+</Window>

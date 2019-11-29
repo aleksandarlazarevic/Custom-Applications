@@ -1,0 +1,8 @@
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\bin\Debug\PhysicalDeviceManager.exe.config
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\bin\Debug\PhysicalDeviceManager.exe
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\bin\Debug\PhysicalDeviceManager.pdb
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\bin\Debug\DeviceIOManager.dll
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\bin\Debug\DeviceIOManager.pdb
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\obj\Debug\PhysicalDeviceManager.csprojResolveAssemblyReference.cache
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\obj\Debug\PhysicalDeviceManager.exe
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\PhysicalDeviceManager\obj\Debug\PhysicalDeviceManager.pdb

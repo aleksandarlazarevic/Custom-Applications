@@ -1,0 +1,7 @@
+﻿@model ItemsListViewModel
+
+<h1>@Model.CurrentCategory</h1>
+@foreach (var item in Model.Items)
+{
+    @Html.Partial("ItemOverviewSummary", item)
+}

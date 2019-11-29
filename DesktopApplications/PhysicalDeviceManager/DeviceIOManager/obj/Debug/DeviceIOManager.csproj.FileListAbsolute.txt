@@ -1,0 +1,4 @@
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\DeviceIOManager\bin\Debug\DeviceIOManager.dll
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\DeviceIOManager\bin\Debug\DeviceIOManager.pdb
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\DeviceIOManager\obj\Debug\DeviceIOManager.dll
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\DeviceIOManager\obj\Debug\DeviceIOManager.pdb

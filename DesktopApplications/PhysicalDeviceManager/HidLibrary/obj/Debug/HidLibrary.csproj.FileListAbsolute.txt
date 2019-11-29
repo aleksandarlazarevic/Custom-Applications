@@ -1,0 +1,4 @@
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\HidLibrary\bin\Debug\HidLibrary.dll
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\HidLibrary\bin\Debug\HidLibrary.pdb
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\HidLibrary\obj\Debug\HidLibrary.dll
+D:\001-Aca\003-Work\007-Projects\customapplications\DesktopApplications\PhysicalDeviceManager\HidLibrary\obj\Debug\HidLibrary.pdb

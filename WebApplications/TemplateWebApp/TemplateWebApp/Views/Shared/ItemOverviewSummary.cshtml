@@ -1,0 +1,13 @@
+﻿@model TemplateWebApp.Models.SellingItems.Item
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="@Model.ImageThumbnailUrl" alt="" />
+        <div class="caption">
+            <h3 class="pull-right">@Model.Price.ToString("C")</h3>
+            <h3>
+                <a>@Model.Name</a>
+            </h3>
+            <p>@Model.ShortDescription</p>
+        </div>
+    </div>
+</div>

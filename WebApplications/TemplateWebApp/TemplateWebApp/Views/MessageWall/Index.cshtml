@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "MessageWall";
+}
+
+<h2>MessageWall</h2>
+
+<div id="mainContainer" style="width: 600px; padding-top: 3px; opacity: 1; display: inline-block;">
+    <div id="postContent" style="background-color: red">
+        Textbox and posting button go here.
+    </div>
+    <div class="post" data-id="xxx" style="background-color: aqua">
+        <div class="postHeader" style="padding: 8px">
+            <a class="postId" href="#" target="_blank" style="float: left">postId</a>
+            <div class="postTimestamp" style="float: right">timeStamp</div>
+        </div>
+        <div class="postText" data-id="xxx">This is some post text.</div>
+        <div class="postData">
+            <div class="postCounters">
+                <div class="postCounter" id="commentCounter" href="post/#" style="float: left">1</div>
+                <div class="postCounter" id="likeCounter-xxx" data-id="xxx" style="float: left">11</div>
+                <div class="postCounter" id="dislikeCounter-xxx" data-id="xxx" style="float: left">222</div>
+                <div class="postCounter">Share:</div>
+            </div>
+            <div class="postActions">
+                <a class="postAction commentAction" >C</a>
+                <div class="postAction likeAction" id="likeAction-xxx" data-id="xxx" style="float: left">L</div>
+                <div class="postAction dislikeAction" id="dislikeAction-xxx" data-id="xxx"style="float: left">D</div>
+                <div class="postAction shareAction">
+                    <div class="facebookShare">F</div>
+                    <div class="twitterShare">T</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
