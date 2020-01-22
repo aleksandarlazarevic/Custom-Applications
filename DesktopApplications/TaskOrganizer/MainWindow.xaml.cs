@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -23,6 +24,7 @@ namespace TaskOrganizer
     /// </summary>
     public partial class MainWindow : Window
    {
+        private string  localPhysicalFile = AppDomain.CurrentDomain.BaseDirectory + "tasks.txt";
         public ObservableCollection<string> taskList = new ObservableCollection<string>();
         public ObservableCollection<string> TaskList
         {
@@ -35,6 +37,20 @@ namespace TaskOrganizer
             InitializeComponent();
             DataContext = this;
             TaskList = new ObservableCollection<string> { "Feed the chickens", "Buy milk", "Learn Mandarin", "Shave the bunny" };
+            ReadFromPhysicalFile(TaskList);
+        }
+
+        private void ReadFromPhysicalFile(ObservableCollection<string> taskList)
+        {
+            using (StreamReader fileRead = new StreamReader(localPhysicalFile))
+            {
+                string lineRead = fileRead.ReadLine();
+                while (lineRead != null)
+                {
+                    taskList.Add(lineRead);
+                    lineRead = fileRead.ReadLine();
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
@@ -51,7 +67,13 @@ namespace TaskOrganizer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TaskList.Add(textBox.Text);
+            string textToWrite = textBox.Text;
+            TaskList.Add(textToWrite);
+            using (StreamWriter file =
+                new StreamWriter(localPhysicalFile, true))
+            {
+                file.WriteLine(textToWrite);
+            }
         }
     }
 }
