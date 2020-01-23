@@ -13,15 +13,17 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="397*"></ColumnDefinition>
+            <ColumnDefinition Width="115*"></ColumnDefinition>
+            <ColumnDefinition Width="282*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding TaskList}" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="#FF05344D" Foreground="#FF1CF307">
+        <ListView ItemsSource="{Binding TaskList}" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="#FF05344D" Foreground="#FF1CF307" Margin="0,0.4,-0.4,0">
         </ListView>
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,71,0,70.6">
             <Label x:Name="label" Content="Enter new task" HorizontalAlignment="Left" Margin="147,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.735,0.395"/>
             <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="303" Margin="42,10,0,0"/>
         </StackPanel>
-        <Button x:Name="button" Content="Save task" Grid.Column="1" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Center" Width="75" Style="{StaticResource CoolButton}" Click="Button_Click"/>
+        <Button x:Name="button" Content="Save task" Grid.Column="2" HorizontalAlignment="Center" Margin="46.686,105,160.6,85.6" VerticalAlignment="Center" Width="75" Height="20" Style="{StaticResource CoolButton}" Click="Button_Click"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="100" Source="pack://application:,,/DataFiles;Component/Images/dog.png" Stretch="Fill"/>
     </Grid>
 </Window>
