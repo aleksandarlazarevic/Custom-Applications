@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TcpClientApp
 {
@@ -13,7 +15,7 @@ namespace TcpClientApp
         byte[] buffer = null;
         byte[] header = null;
 
-        string IPAddress = "10.101.20.134";
+        string IPAddress = "localhost";
         static string filename = @"C:\FileToSend\bomb.txt";
         bool read = true;
 

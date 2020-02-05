@@ -98,12 +98,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TcpClient\TcpClientApp.csproj">
-      <Project>{74D4A237-73AE-4D7E-860F-760F2EE82B7E}</Project>
+    <ProjectReference Include="..\TcpClient\TcpClientApp\TcpClientApp.csproj">
+      <Project>{3f307087-3886-4072-907d-e530e526ddfd}</Project>
       <Name>TcpClientApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TcpServer\TcpServer.csproj">
-      <Project>{9C00B31E-D48F-434E-B4A3-A9608A9A057B}</Project>
+    <ProjectReference Include="..\TcpServer\obj\TcpServer\TcpServer.csproj">
+      <Project>{1c707bf9-440e-442f-a528-c9e09c429a4f}</Project>
       <Name>TcpServer</Name>
     </ProjectReference>
   </ItemGroup>
