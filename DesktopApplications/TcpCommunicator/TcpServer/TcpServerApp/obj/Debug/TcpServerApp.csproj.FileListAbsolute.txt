@@ -1,0 +1,4 @@
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpServer\TcpServerApp\bin\Debug\TcpServerApp.dll
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpServer\TcpServerApp\bin\Debug\TcpServerApp.pdb
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpServer\TcpServerApp\obj\Debug\TcpServerApp.dll
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpServer\TcpServerApp\obj\Debug\TcpServerApp.pdb

@@ -1,0 +1,5 @@
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpClient\TcpClientApp\bin\Debug\TcpClientApp.dll
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpClient\TcpClientApp\bin\Debug\TcpClientApp.pdb
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpClient\TcpClientApp\obj\Debug\TcpClientApp.csprojAssemblyReference.cache
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpClient\TcpClientApp\obj\Debug\TcpClientApp.dll
+D:\001-Aca\003-Work\005-GitHub\Custom-Applications\DesktopApplications\TcpCommunicator\TcpClient\TcpClientApp\obj\Debug\TcpClientApp.pdb

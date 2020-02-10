@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TcpClientApp;
-using TcpServer;
+using TcpServerApp;
 
 namespace TcpCommunicator
 {

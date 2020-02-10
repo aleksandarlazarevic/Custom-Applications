@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpCommunicator", "TcpCommu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientApp", "..\TcpClient\TcpClientApp\TcpClientApp.csproj", "{3F307087-3886-4072-907D-E530E526DDFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServer", "..\TcpServer\obj\TcpServer\TcpServer.csproj", "{1C707BF9-440E-442F-A528-C9E09C429A4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServerApp", "..\TcpServer\TcpServerApp\TcpServerApp.csproj", "{3132F002-3513-4803-B08C-1168E6F30995}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{3F307087-3886-4072-907D-E530E526DDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F307087-3886-4072-907D-E530E526DDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F307087-3886-4072-907D-E530E526DDFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C707BF9-440E-442F-A528-C9E09C429A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C707BF9-440E-442F-A528-C9E09C429A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C707BF9-440E-442F-A528-C9E09C429A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C707BF9-440E-442F-A528-C9E09C429A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3132F002-3513-4803-B08C-1168E6F30995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3132F002-3513-4803-B08C-1168E6F30995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3132F002-3513-4803-B08C-1168E6F30995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3132F002-3513-4803-B08C-1168E6F30995}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

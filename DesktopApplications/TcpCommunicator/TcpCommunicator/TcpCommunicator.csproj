@@ -102,9 +102,9 @@
       <Project>{3f307087-3886-4072-907d-e530e526ddfd}</Project>
       <Name>TcpClientApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TcpServer\obj\TcpServer\TcpServer.csproj">
-      <Project>{1c707bf9-440e-442f-a528-c9e09c429a4f}</Project>
-      <Name>TcpServer</Name>
+    <ProjectReference Include="..\TcpServer\TcpServerApp\TcpServerApp.csproj">
+      <Project>{3132F002-3513-4803-B08C-1168E6F30995}</Project>
+      <Name>TcpServerApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
