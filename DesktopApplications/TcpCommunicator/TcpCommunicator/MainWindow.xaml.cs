@@ -26,6 +26,8 @@ namespace TcpCommunicator
     public partial class MainWindow : Window
     {
         public ObservableCollection<string> logMessages = new ObservableCollection<string>();
+        public Client tcpClient;
+        public Server tcpServer;
         public ObservableCollection<string> LogMessages
         {
             get { return this.logMessages; }
@@ -47,32 +49,26 @@ namespace TcpCommunicator
         {
             InitializeComponent();
             DataContext = this;
-
+            tcpClient = new Client();
+            tcpServer = new Server();
         }
 
         private void StartClientButton_Click(object sender, RoutedEventArgs e)
         {
+            tcpClient.StartClient();
             LogMessages.Add("TCP Client started...");
-            Client tcpClient = new Client();
-            Client.StartClient();
         }
 
         private void StartServerButton_Click(object sender, RoutedEventArgs e)
         {
+            tcpServer.StartServer();
             LogMessages.Add("TCP Server started...");
-            Server tcpServer = new Server();
-            Server.StartServer();
         }
 
         private void SendFileButton_Click(object sender, RoutedEventArgs e)
         {
             LogMessages.Add("Malicious file sent!");
-            //SendFile(@"C:\FileToSend\bomb.txt");
-        }
-
-        private void SendFile(string fileToSend)
-        {
-
+            tcpClient.SendFile(@"C:\FileToSend\bomb.txt", @"C:\PlantedFile\bomb.txt");
         }
     }
 }

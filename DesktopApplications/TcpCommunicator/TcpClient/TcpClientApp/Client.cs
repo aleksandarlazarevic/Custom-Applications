@@ -10,26 +10,32 @@ namespace TcpClientApp
 {
     public class Client
     {
-        int port = 777;
+        int port;
         int bufferSize = 1024;
         byte[] buffer = null;
         byte[] header = null;
-
-        string IPAddress = "localhost";
-        static string filename = @"C:\FileToSend\bomb.txt";
+        private TcpClient tcpClient;
+        private string IPAddress;
         bool read = true;
 
         public Client()
         {
-            FileStream fs = new FileStream(filename, FileMode.Open);
-            int bufferCount = Convert.ToInt32(Math.Ceiling((double)fs.Length / (double)bufferSize));
+            port = 777;
+            IPAddress = "localhost";
+        }
 
-            TcpClient tcpClient = new TcpClient(IPAddress, port);
-            // Setting timeouts for the transfer time
+        public void StartClient()
+        {
+            tcpClient = new TcpClient(IPAddress, port);
             tcpClient.SendTimeout = 600000;
             tcpClient.ReceiveTimeout = 600000;
+        }
 
-            string headerStr = "Content-length:" + fs.Length.ToString() + "\r\nFilename:" + @"C:\PlantedFile\" + "bomb.txt\r\n";
+        public void SendFile(string fileToSend, string plantedFileLocation)
+        {
+            FileStream fs = new FileStream(fileToSend, FileMode.Open);
+            int bufferCount = Convert.ToInt32(Math.Ceiling((double)fs.Length / (double)bufferSize));
+            string headerStr = "Content-length:" + fs.Length.ToString() + "\r\nFilename:" + plantedFileLocation +"\r\n";
             header = new byte[bufferSize];
             Array.Copy(Encoding.ASCII.GetBytes(headerStr), header, Encoding.ASCII.GetBytes(headerStr).Length);
 
@@ -46,11 +52,6 @@ namespace TcpClientApp
 
             tcpClient.Client.Close();
             fs.Close();
-        }
-
-        public static void StartClient()
-        {
-            //throw new NotImplementedException();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace TcpServerApp
     public class Server
     {
 
-        int port = 777;
+        int port;
         int bufferSize = 1024;
         byte[] buffer = null;
         byte[] header = null;
@@ -22,6 +22,16 @@ namespace TcpServerApp
         int filesize = 0;
 
         public Server()
+        {
+            port = 777;
+        }
+
+        private void CreateFolderIfItDoesNotExist(string filename)
+        {
+            (new FileInfo(filename)).Directory.Create();
+        }
+
+        public void StartServer()
         {
             TcpListener listener = new TcpListener(IPAddress.Any, port);
             listener.Start();
@@ -62,16 +72,6 @@ namespace TcpServerApp
             }
 
             fs.Close();
-        }
-
-        private void CreateFolderIfItDoesNotExist(string filename)
-        {
-            (new FileInfo(filename)).Directory.Create();
-        }
-
-        public static void StartServer()
-        {
-            //throw new NotImplementedException();
         }
     }
 }
