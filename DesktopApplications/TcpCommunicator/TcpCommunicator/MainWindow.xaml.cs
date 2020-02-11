@@ -35,7 +35,7 @@ namespace TcpCommunicator
         }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        protected virtual void SetProperty<T>(
+        private void SetProperty<T>(
                        ref T member,
                        T val,
                        [CallerMemberName] string propertyName = null)
@@ -61,14 +61,15 @@ namespace TcpCommunicator
 
         private void StartServerButton_Click(object sender, RoutedEventArgs e)
         {
-            tcpServer.StartServer();
+            string message = tcpServer.StartServer();
             LogMessages.Add("TCP Server started...");
+            LogMessages.Add(message);
         }
 
         private void SendFileButton_Click(object sender, RoutedEventArgs e)
         {
-            LogMessages.Add("Malicious file sent!");
             tcpClient.SendFile(@"C:\FileToSend\bomb.txt", @"C:\PlantedFile\bomb.txt");
+            LogMessages.Add("Malicious file sent!");
         }
     }
 }
