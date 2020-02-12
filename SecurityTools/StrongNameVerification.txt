@@ -1,0 +1,90 @@
+bool result = VerifyAssembliesConsistency(); // consistency check result
+            if (!result)
+            {
+                NLogLogger.Error("VerifyAssembliesConsistency method fail.");
+                shouldReturn = true;
+            }
+
+ private static bool VerifyAssembliesConsistency()
+        {
+            Assembly executingAssembly = Assembly.GetExecutingAssembly(); // executing assembly
+            bool result = true; // return value
+            string path = executingAssembly.Location; // path of executing assembly
+            string dir = Path.GetDirectoryName(path); // executing assembly directory
+            DirectoryInfo di = new DirectoryInfo(dir); // executing assembly directory info
+            FileInfo[] dllFileInfoArray = di.GetFiles("*.dll"); // search for dlls used by app
+            FileInfo[] exeFileInfoArray = di.GetFiles("*.exe"); // search for exes used by app
+
+            // both list of files must be consistent
+            // checking all found dlls for consistency
+            result = CheckFilesConsistency(dllFileInfoArray);
+
+            // also checking checking all found  exes for consistency
+            result = result && CheckFilesConsistency(exeFileInfoArray);
+            return result;
+        }
+
+
+private static bool CheckFilesConsistency(FileInfo[] dllFileInfoArray)
+        {
+            bool result = true; // operation's result
+            foreach (FileInfo fileInfo in dllFileInfoArray)
+            {
+                // loop variable
+                // we don't check third party not .NET assemblies 
+                if (!ReflectionUtils.IsDotNetAssembly(fileInfo.FullName))
+                {
+                    continue;
+                }
+
+                string testResult = string.Empty; // assembly loading error message
+                try
+                {
+                    Assembly.LoadFile(fileInfo.FullName);
+                    if (VerifyAssemblyStrongName(fileInfo.FullName) == false)
+                    {
+                        testResult = "Application start failed, strong name validation failed! Assembly name: "
+                                     + fileInfo.Name;
+                    }
+                }
+                catch (BadImageFormatException ex)
+                {
+                    // assembly is not authentic (saved since official build)
+                    testResult = "Application start failed, DLL or assembly is not authentic. Assembly name: "
+                                 + fileInfo.Name;
+                    NLogLogger.ErrorException(testResult, ex);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    // assembly is not found (referred assembly not found)
+                    testResult = "Application start failed, DLL or assembly not found. Assembly name: "
+                                 + fileInfo.Name;
+                    NLogLogger.ErrorException(testResult, ex);
+                }
+
+                if (!string.IsNullOrEmpty(testResult))
+                {
+                    NLogLogger.Error(testResult);
+                    DVSMessageBox.Show(testResult, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
+
+
+private static bool VerifyAssemblyStrongName(string assembly)
+        {
+            // check the signature first
+            bool notForced = false; // force validation flag
+            return StrongNameSignatureVerificationEx(assembly, true, ref notForced);
+        }
+
+
+        [DllImport("mscoree.dll", CharSet = CharSet.Unicode)]
+        private static extern bool StrongNameSignatureVerificationEx(
+            string wszFilePath, 
+            bool forceVerification, 
+            ref bool wasVerified);
