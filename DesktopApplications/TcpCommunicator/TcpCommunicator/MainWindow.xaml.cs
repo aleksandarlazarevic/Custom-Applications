@@ -61,9 +61,8 @@ namespace TcpCommunicator
 
         private void StartServerButton_Click(object sender, RoutedEventArgs e)
         {
-            string message = tcpServer.StartServer();
+            Task.Delay(2000).ContinueWith(t => tcpServer.StartServer());
             LogMessages.Add("TCP Server started...");
-            LogMessages.Add(message);
         }
 
         private void SendFileButton_Click(object sender, RoutedEventArgs e)

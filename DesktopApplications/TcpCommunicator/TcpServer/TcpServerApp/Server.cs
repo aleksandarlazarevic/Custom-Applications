@@ -27,11 +27,10 @@ namespace TcpServerApp
             (new FileInfo(filename)).Directory.Create();
         }
 
-        public string StartServer()
+        public void StartServer()
         {
             var socket = StartListeningForConnections();
             ProcessReceivedData(socket);
-            return "Received: " + filename;
         }
 
         private Socket StartListeningForConnections()
