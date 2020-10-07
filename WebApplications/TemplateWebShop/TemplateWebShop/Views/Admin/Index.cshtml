@@ -1,0 +1,82 @@
+﻿@model TemplateWebShop.Models.LoginViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Online Shopping</title>
+    <link href="/CSS/admin_stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <style>
+        .AdminLogin {
+            margin: 7% 30%;
+            padding: 6% 10%;
+            background: rgb(236, 233, 233);
+        }
+
+        .SignIn {
+            text-align: center;
+            padding: 5PX 30PX;
+            background-color: rgb(30, 95, 209);
+            color: #FFF;
+            margin: 10% 0 10% 30%;
+        }
+
+        .forgot {
+            margin-top: 8%;
+            font-size: 14px;
+        }
+    </style>
+
+    <div class="AdminLogin">
+
+        @using (Html.BeginForm("Index", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h1 style="text-align: center; margin-bottom: 20px">Admin Login</h1>
+            <div>
+                <div class="form-group row">
+                    @Html.TextBoxFor(m => m.UserEmailId, new { @placeholder = "Username" })
+                    @Html.ValidationMessageFor(m => m.UserEmailId)
+                </div>
+                <div class="form-group row">
+                    @Html.PasswordFor(m => m.Password, new { @type = "password", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                <label style="display: none;">@Html.RadioButton("UserType", 1, new { @checked = "checked", }) Admin</label>
+                <div style="display: none;" class="form-group row">
+
+                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "csscheck" })
+                    <label for="RememberMe">Keep Me Signed In</label>
+                    <a href="/Account/ForgotPassword">Forgot Password?</a>
+                </div>
+                <div class="form-group row"> 
+                    <input type="checkbox" name="RememberMe1" id="c1" checked>
+                    <label for="c1">Remember me</label>
+                    <a href="/Account/ForgotPassword">Forgot Password?</a>
+                </div>
+
+                <input type="submit" value="Sign In">
+            </div>
+        }
+    </div>
+    @section scripts{
+        <script>
+            $(function () {
+                $('#submit').on('click', function (evt) {
+                    evt.preventDefault();
+                    $.post('', $('form').serialize(), function () {
+                        alert('Posted using jQuery');
+                    });
+                });
+            });
+        </script>
+    }
+    <script src="~/lib/js/jquery-3.3.1.js"></script>
+    <script src="~/lib/js/bootstrap.bundle.js"></script>
+</body>
+</html>
