@@ -46,7 +46,7 @@ namespace ToDoApp.Helpers
  
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                string commandString = "SELECT * FROM TodoListItems ORDER BY AddDate DESC";
+                string commandString = "SELECT * FROM TodoListItems ORDER BY Id ASC";
                 SqlCommand command = new SqlCommand(commandString, sqlConnection);
                 sqlConnection.Open();
                 using (SqlDataReader commandReader = command.ExecuteReader())
@@ -69,10 +69,16 @@ namespace ToDoApp.Helpers
 
         internal static void Insert(ToDoListItem editableItem)
         {
-            string id = editableItem.Id.ToString();
-            string date = editableItem.AddDate.ToString();
+            int id = editableItem.Id;
+            ToDoListItem lastItem = GetAllListItems().Last();
+            if (lastItem != null)
+            {
+                id = lastItem.Id + 1;
+            };
+
+            DateTime date = editableItem.AddDate;
             string title = editableItem.Title;
-            string isDone = editableItem.IsDone.ToString();
+            bool isDone = editableItem.IsDone;
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
@@ -103,10 +109,10 @@ namespace ToDoApp.Helpers
 
         internal static void Update(ToDoListItem dbItem)
         {
-            string id = dbItem.Id.ToString();
-            string date = dbItem.AddDate.ToString();
+            int id = dbItem.Id;
+            DateTime date = dbItem.AddDate;
             string title = dbItem.Title;
-            string isDone = dbItem.IsDone.ToString();
+            bool isDone = dbItem.IsDone;
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {

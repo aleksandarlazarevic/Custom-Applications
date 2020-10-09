@@ -33,8 +33,8 @@
         {
             <tr>
                 <td>
-                    <input type="checkbox" checked="@item.IsDone" onclick="window.location.href = '/Home/ToggleIsDone/@item.Id';" />
-                    <a href="/Home/Edit/@item.Id">
+                    <input type="checkbox" checked="@item.IsDone" onclick="window.location.href = '/TodoList/ToggleIsDone';" />
+                    <a href="/TodoList/Edit">
                         @item.Title
                     </a>
                 </td>
@@ -42,7 +42,7 @@
                     @item.AddDate.ToShortDateString()
                 </td>
                 <td class="text-center">
-                    <a href="/Home/Delete/@item.Id" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="/TodoList/Delete" onclick="return confirm('Are you sure?');" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }

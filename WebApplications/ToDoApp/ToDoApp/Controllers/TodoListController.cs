@@ -17,16 +17,16 @@ namespace ToDoApp.Controllers
             return View("Index", viewModel);
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(TodoListViewModel viewModel)
         {
-            TodoListViewModel viewModel = new TodoListViewModel();
+            int id = viewModel.EditableItem.Id;
             viewModel.EditableItem = viewModel.TodoItems.FirstOrDefault(x => x.Id == id);
             return View("Index", viewModel);
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(TodoListViewModel viewModel)
         {
-            ToDoListItem item = DbHelper.GetListItem(id);
+            ToDoListItem item = DbHelper.GetListItem(viewModel.EditableItem.Id);
             if (item != null) { DbHelper.Delete(item.Id); }
             return RedirectToAction("Index");
         }
@@ -52,9 +52,10 @@ namespace ToDoApp.Controllers
                 return View("Index", new TodoListViewModel());
         }
 
-        public IActionResult ToggleIsDone(int id)
+        public IActionResult ToggleIsDone(TodoListViewModel viewModel)
         {
-                ToDoListItem item = DbHelper.GetListItem(id);
+            int id = viewModel.EditableItem.Id;
+            ToDoListItem item = DbHelper.GetListItem(id);
                 if (item != null)
                 {
                     item.IsDone = !item.IsDone;

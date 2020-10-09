@@ -22,10 +22,6 @@ namespace ToDoApp.Controllers
         {
             return View();
         }
-        public IActionResult UserManagement()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
