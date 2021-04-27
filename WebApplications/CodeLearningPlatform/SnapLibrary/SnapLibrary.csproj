@@ -1,0 +1,565 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="API.md" />
+    <None Remove="Backgrounds\atom_playground.jpg" />
+    <None Remove="Backgrounds\BACKGROUNDS" />
+    <None Remove="Backgrounds\baseball-field.png" />
+    <None Remove="Backgrounds\basketball-court1-a.png" />
+    <None Remove="Backgrounds\basketball-court1-b.png" />
+    <None Remove="Backgrounds\beach_malibu.jpg" />
+    <None Remove="Backgrounds\beach_rio.png" />
+    <None Remove="Backgrounds\bedroom1.gif" />
+    <None Remove="Backgrounds\bedroom2.gif" />
+    <None Remove="Backgrounds\bench_with_view.jpg" />
+    <None Remove="Backgrounds\berkeley_mural.jpg" />
+    <None Remove="Backgrounds\blue_sky.svg" />
+    <None Remove="Backgrounds\blue_sky2.svg" />
+    <None Remove="Backgrounds\blue_sky3.svg" />
+    <None Remove="Backgrounds\boardwalk.jpg" />
+    <None Remove="Backgrounds\brick-wall-and-stairs.jpg" />
+    <None Remove="Backgrounds\brick-wall1.jpg" />
+    <None Remove="Backgrounds\brick-wall2.jpg" />
+    <None Remove="Backgrounds\brick_wall1.jpg" />
+    <None Remove="Backgrounds\brick_wall2.jpg" />
+    <None Remove="Backgrounds\building_at_mit.jpg" />
+    <None Remove="Backgrounds\canyon.jpg" />
+    <None Remove="Backgrounds\castle1.png" />
+    <None Remove="Backgrounds\castle2.png" />
+    <None Remove="Backgrounds\castle3.png" />
+    <None Remove="Backgrounds\castle4.png" />
+    <None Remove="Backgrounds\castle5.jpg" />
+    <None Remove="Backgrounds\chalkboard.jpg" />
+    <None Remove="Backgrounds\circles.svg" />
+    <None Remove="Backgrounds\city_with_water.jpg" />
+    <None Remove="Backgrounds\city_with_water2.jpg" />
+    <None Remove="Backgrounds\clothing_store.jpg" />
+    <None Remove="Backgrounds\desert.gif" />
+    <None Remove="Backgrounds\doily.svg" />
+    <None Remove="Backgrounds\driveway.jpg" />
+    <None Remove="Backgrounds\flowers.gif" />
+    <None Remove="Backgrounds\flower_bed.jpg" />
+    <None Remove="Backgrounds\forest.jpg" />
+    <None Remove="Backgrounds\garden_rock.jpg" />
+    <None Remove="Backgrounds\gingerbread.png" />
+    <None Remove="Backgrounds\goal1.png" />
+    <None Remove="Backgrounds\goal2.png" />
+    <None Remove="Backgrounds\graffiti.jpg" />
+    <None Remove="Backgrounds\grand_canyon.jpg" />
+    <None Remove="Backgrounds\gravel_desert.jpg" />
+    <None Remove="Backgrounds\greek_theater.png" />
+    <None Remove="Backgrounds\hall.jpg" />
+    <None Remove="Backgrounds\hallway_outdoors.jpg" />
+    <None Remove="Backgrounds\hay_field.jpg" />
+    <None Remove="Backgrounds\hearts1.svg" />
+    <None Remove="Backgrounds\hearts2.svg" />
+    <None Remove="Backgrounds\hill.jpg" />
+    <None Remove="Backgrounds\houses.jpg" />
+    <None Remove="Backgrounds\kitchen.jpg" />
+    <None Remove="Backgrounds\lake.jpg" />
+    <None Remove="Backgrounds\light.svg" />
+    <None Remove="Backgrounds\metro1.png" />
+    <None Remove="Backgrounds\moon.jpg" />
+    <None Remove="Backgrounds\neon_tunnel.svg" />
+    <None Remove="Backgrounds\night_city.gif" />
+    <None Remove="Backgrounds\night_city_with_street.gif" />
+    <None Remove="Backgrounds\parking-ramp.jpg" />
+    <None Remove="Backgrounds\party.svg" />
+    <None Remove="Backgrounds\party_room.jpg" />
+    <None Remove="Backgrounds\pathway.jpg" />
+    <None Remove="Backgrounds\playing-field.png" />
+    <None Remove="Backgrounds\pool.jpg" />
+    <None Remove="Backgrounds\purple.svg" />
+    <None Remove="Backgrounds\rays.svg" />
+    <None Remove="Backgrounds\room1.jpg" />
+    <None Remove="Backgrounds\room2.jpg" />
+    <None Remove="Backgrounds\room3.jpg" />
+    <None Remove="Backgrounds\route66.jpg" />
+    <None Remove="Backgrounds\school1.gif" />
+    <None Remove="Backgrounds\school2.jpg" />
+    <None Remove="Backgrounds\slopes.svg" />
+    <None Remove="Backgrounds\space.svg" />
+    <None Remove="Backgrounds\sparkling.svg" />
+    <None Remove="Backgrounds\spotlight-stage.jpg" />
+    <None Remove="Backgrounds\spotlight-stage2.svg" />
+    <None Remove="Backgrounds\stage1.png" />
+    <None Remove="Backgrounds\stage2.png" />
+    <None Remove="Backgrounds\stars.gif" />
+    <None Remove="Backgrounds\stripes.svg" />
+    <None Remove="Backgrounds\the_movies_inside.jpg" />
+    <None Remove="Backgrounds\the_movies_outside.jpg" />
+    <None Remove="Backgrounds\track.svg" />
+    <None Remove="Backgrounds\train_tracks1.jpg" />
+    <None Remove="Backgrounds\train_tracks2.gif" />
+    <None Remove="Backgrounds\tree-gifts.png" />
+    <None Remove="Backgrounds\tree.jpg" />
+    <None Remove="Backgrounds\underwater1.png" />
+    <None Remove="Backgrounds\underwater2.png" />
+    <None Remove="Backgrounds\underwater3.gif" />
+    <None Remove="Backgrounds\urban1.png" />
+    <None Remove="Backgrounds\urban2.png" />
+    <None Remove="Backgrounds\village.jpg" />
+    <None Remove="Backgrounds\water_and_rocks.jpg" />
+    <None Remove="Backgrounds\wave.jpg" />
+    <None Remove="Backgrounds\winter-lights.svg" />
+    <None Remove="Backgrounds\winter.svg" />
+    <None Remove="Backgrounds\woods.gif" />
+    <None Remove="Backgrounds\woods_and_bench.jpg" />
+    <None Remove="Backgrounds\xy-grid.gif" />
+    <None Remove="CONTRIBUTING.md" />
+    <None Remove="Costumes\0-pixel.svg" />
+    <None Remove="Costumes\3-glow.svg" />
+    <None Remove="HISTORY.md" />
+    <None Remove="index.html" />
+    <None Remove="LICENSE" />
+    <None Remove="MIGRATING.md" />
+    <None Remove="OFFLINE.md" />
+    <None Remove="README.md" />
+    <None Remove="snap.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Backgrounds\atom_playground.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\BACKGROUNDS">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\baseball-field.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\basketball-court1-a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\basketball-court1-b.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\beach_malibu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\beach_rio.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\bedroom1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\bedroom2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\bench_with_view.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\berkeley_mural.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\blue_sky.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\blue_sky2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\blue_sky3.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\boardwalk.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\brick-wall-and-stairs.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\brick-wall1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\brick-wall2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\brick_wall1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\brick_wall2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\building_at_mit.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\canyon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\castle1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\castle2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\castle3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\castle4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\castle5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\chalkboard.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\circles.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\city_with_water.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\city_with_water2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\clothing_store.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\desert.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\doily.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\driveway.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\flowers.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\flower_bed.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\forest.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\garden_rock.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\gingerbread.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\goal1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\goal2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\graffiti.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\grand_canyon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\gravel_desert.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\greek_theater.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\hall.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\hallway_outdoors.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\hay_field.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\hearts1.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\hearts2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\hill.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\houses.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\kitchen.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\lake.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\light.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\metro1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\moon.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\neon_tunnel.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\night_city.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\night_city_with_street.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\parking-ramp.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\party.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\party_room.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\pathway.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\playing-field.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\pool.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\purple.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\rays.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\room1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\room2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\room3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\route66.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\school1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\school2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\slopes.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\space.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\sparkling.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\spotlight-stage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\spotlight-stage2.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\stage1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\stage2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\stars.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\stripes.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\the_movies_inside.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\the_movies_outside.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\track.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\train_tracks1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\train_tracks2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\tree-gifts.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\tree.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\underwater1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\underwater2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\underwater3.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\urban1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\urban2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\village.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\water_and_rocks.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\wave.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\winter-lights.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\winter.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\woods.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\woods_and_bench.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Backgrounds\xy-grid.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Class1.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="API.md" />
+    <Resource Include="Backgrounds\atom_playground.jpg" />
+    <Resource Include="Backgrounds\BACKGROUNDS" />
+    <Resource Include="Backgrounds\baseball-field.png" />
+    <Resource Include="Backgrounds\basketball-court1-a.png" />
+    <Resource Include="Backgrounds\basketball-court1-b.png" />
+    <Resource Include="Backgrounds\beach_malibu.jpg" />
+    <Resource Include="Backgrounds\beach_rio.png" />
+    <Resource Include="Backgrounds\bedroom1.gif" />
+    <Resource Include="Backgrounds\bedroom2.gif" />
+    <Resource Include="Backgrounds\bench_with_view.jpg" />
+    <Resource Include="Backgrounds\berkeley_mural.jpg" />
+    <Resource Include="Backgrounds\blue_sky.svg" />
+    <Resource Include="Backgrounds\blue_sky2.svg" />
+    <Resource Include="Backgrounds\blue_sky3.svg" />
+    <Resource Include="Backgrounds\boardwalk.jpg" />
+    <Resource Include="Backgrounds\brick-wall-and-stairs.jpg" />
+    <Resource Include="Backgrounds\brick-wall1.jpg" />
+    <Resource Include="Backgrounds\brick-wall2.jpg" />
+    <Resource Include="Backgrounds\brick_wall1.jpg" />
+    <Resource Include="Backgrounds\brick_wall2.jpg" />
+    <Resource Include="Backgrounds\building_at_mit.jpg" />
+    <Resource Include="Backgrounds\canyon.jpg" />
+    <Resource Include="Backgrounds\castle1.png" />
+    <Resource Include="Backgrounds\castle2.png" />
+    <Resource Include="Backgrounds\castle3.png" />
+    <Resource Include="Backgrounds\castle4.png" />
+    <Resource Include="Backgrounds\castle5.jpg" />
+    <Resource Include="Backgrounds\chalkboard.jpg" />
+    <Resource Include="Backgrounds\circles.svg" />
+    <Resource Include="Backgrounds\city_with_water.jpg" />
+    <Resource Include="Backgrounds\city_with_water2.jpg" />
+    <Resource Include="Backgrounds\clothing_store.jpg" />
+    <Resource Include="Backgrounds\desert.gif" />
+    <Resource Include="Backgrounds\doily.svg" />
+    <Resource Include="Backgrounds\driveway.jpg" />
+    <Resource Include="Backgrounds\flowers.gif" />
+    <Resource Include="Backgrounds\flower_bed.jpg" />
+    <Resource Include="Backgrounds\forest.jpg" />
+    <Resource Include="Backgrounds\garden_rock.jpg" />
+    <Resource Include="Backgrounds\gingerbread.png" />
+    <Resource Include="Backgrounds\goal1.png" />
+    <Resource Include="Backgrounds\goal2.png" />
+    <Resource Include="Backgrounds\graffiti.jpg" />
+    <Resource Include="Backgrounds\grand_canyon.jpg" />
+    <Resource Include="Backgrounds\gravel_desert.jpg" />
+    <Resource Include="Backgrounds\greek_theater.png" />
+    <Resource Include="Backgrounds\hall.jpg" />
+    <Resource Include="Backgrounds\hallway_outdoors.jpg" />
+    <Resource Include="Backgrounds\hay_field.jpg" />
+    <Resource Include="Backgrounds\hearts1.svg" />
+    <Resource Include="Backgrounds\hearts2.svg" />
+    <Resource Include="Backgrounds\hill.jpg" />
+    <Resource Include="Backgrounds\houses.jpg" />
+    <Resource Include="Backgrounds\kitchen.jpg" />
+    <Resource Include="Backgrounds\lake.jpg" />
+    <Resource Include="Backgrounds\light.svg" />
+    <Resource Include="Backgrounds\metro1.png" />
+    <Resource Include="Backgrounds\moon.jpg" />
+    <Resource Include="Backgrounds\neon_tunnel.svg" />
+    <Resource Include="Backgrounds\night_city.gif" />
+    <Resource Include="Backgrounds\night_city_with_street.gif" />
+    <Resource Include="Backgrounds\parking-ramp.jpg" />
+    <Resource Include="Backgrounds\party.svg" />
+    <Resource Include="Backgrounds\party_room.jpg" />
+    <Resource Include="Backgrounds\pathway.jpg" />
+    <Resource Include="Backgrounds\playing-field.png" />
+    <Resource Include="Backgrounds\pool.jpg" />
+    <Resource Include="Backgrounds\purple.svg" />
+    <Resource Include="Backgrounds\rays.svg" />
+    <Resource Include="Backgrounds\room1.jpg" />
+    <Resource Include="Backgrounds\room2.jpg" />
+    <Resource Include="Backgrounds\room3.jpg" />
+    <Resource Include="Backgrounds\route66.jpg" />
+    <Resource Include="Backgrounds\school1.gif" />
+    <Resource Include="Backgrounds\school2.jpg" />
+    <Resource Include="Backgrounds\slopes.svg" />
+    <Resource Include="Backgrounds\space.svg" />
+    <Resource Include="Backgrounds\sparkling.svg" />
+    <Resource Include="Backgrounds\spotlight-stage.jpg" />
+    <Resource Include="Backgrounds\spotlight-stage2.svg" />
+    <Resource Include="Backgrounds\stage1.png" />
+    <Resource Include="Backgrounds\stage2.png" />
+    <Resource Include="Backgrounds\stars.gif" />
+    <Resource Include="Backgrounds\stripes.svg" />
+    <Resource Include="Backgrounds\the_movies_inside.jpg" />
+    <Resource Include="Backgrounds\the_movies_outside.jpg" />
+    <Resource Include="Backgrounds\track.svg" />
+    <Resource Include="Backgrounds\train_tracks1.jpg" />
+    <Resource Include="Backgrounds\train_tracks2.gif" />
+    <Resource Include="Backgrounds\tree-gifts.png" />
+    <Resource Include="Backgrounds\tree.jpg" />
+    <Resource Include="Backgrounds\underwater1.png" />
+    <Resource Include="Backgrounds\underwater2.png" />
+    <Resource Include="Backgrounds\underwater3.gif" />
+    <Resource Include="Backgrounds\urban1.png" />
+    <Resource Include="Backgrounds\urban2.png" />
+    <Resource Include="Backgrounds\village.jpg" />
+    <Resource Include="Backgrounds\water_and_rocks.jpg" />
+    <Resource Include="Backgrounds\wave.jpg" />
+    <Resource Include="Backgrounds\winter-lights.svg" />
+    <Resource Include="Backgrounds\winter.svg" />
+    <Resource Include="Backgrounds\woods.gif" />
+    <Resource Include="Backgrounds\woods_and_bench.jpg" />
+    <Resource Include="Backgrounds\xy-grid.gif" />
+    <Resource Include="CONTRIBUTING.md" />
+    <Resource Include="Costumes\0-pixel.svg" />
+    <Resource Include="Costumes\3-glow.svg" />
+    <Resource Include="HISTORY.md" />
+    <Resource Include="index.html" />
+    <Resource Include="LICENSE" />
+    <Resource Include="MIGRATING.md" />
+    <Resource Include="OFFLINE.md" />
+    <Resource Include="README.md" />
+    <Resource Include="snap.html" />
+  </ItemGroup>
+
+</Project>

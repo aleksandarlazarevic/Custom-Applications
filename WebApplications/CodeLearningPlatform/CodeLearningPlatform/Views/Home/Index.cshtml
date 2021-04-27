@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Hello, world! The time on the server is @DateTime.Now</p>
+    <input type="button" value="Go to learning platform" onclick="@("window.location.href='" + @Url.Action("ShowSnap", "Home") + "'");" />
+    <a href="@Url.Content(@"C:\001-Aca\001-Projects\GitHub\Custom-Applications\WebApplications\CodeLearningPlatform\CodeLearningPlatform\bin\Debug\net5.0\Views\Snap\snap.html")">Home</a>
+
+</div>
