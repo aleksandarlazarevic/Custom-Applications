@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using WebActions.Browsers.Chrome;
 
 namespace WebActions
 {
     public class Betting
     {
-        private static IWebDriver driver = new ChromeDriver(@"D:\001-AleksandarLazarevic\001-Documents\004-GitHub\Custom-Applications\DesktopApplications\Bots\WebsiteAutomation\WebDrivers\Chrome\90.0.4430.24");
+        private static IWebDriver driver = new ChromeDriver(ChromeDriverData.Instance.ChromeDriverLocation);
 
    
 
