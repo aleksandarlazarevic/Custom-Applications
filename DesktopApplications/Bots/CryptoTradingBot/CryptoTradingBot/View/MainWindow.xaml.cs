@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoTradingBot.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace CryptoTradingBot
         public MainWindow()
         {
             InitializeComponent();
-            Trading.StartTrading();
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace WebActions
 {
     public class Betting
     {
-        private static IWebDriver driver = new ChromeDriver(ChromeDriverData.Instance.ChromeDriverLocation);
+        private static IWebDriver driver = new ChromeDriver(ChromeDriverData.ChromeDriverLocation);
 
    
 

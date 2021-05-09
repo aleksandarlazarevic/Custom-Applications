@@ -32,9 +32,9 @@ namespace WebActions.Browsers.Chrome
             }
         }
 
-        public string ChromeDriverLocation = @"D:\001-AleksandarLazarevic\001-Documents\004-GitHub\Custom-Applications\DesktopApplications\Bots\WebsiteAutomation\WebDrivers\Chrome\90.0.4430.24";
+        public static string ChromeDriverLocation = @"D:\001-AleksandarLazarevic\001-Documents\004-GitHub\Custom-Applications\DesktopApplications\Bots\WebsiteAutomation\WebDrivers\Chrome\90.0.4430.24";
 
-        public IWebDriver GetChromeInstanceWithUserProfile()
+        public static IWebDriver GetChromeInstanceWithUserProfile()
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("test-type");
@@ -47,14 +47,13 @@ namespace WebActions.Browsers.Chrome
             //options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
             // Profile [Change:User name]
             options.AddArgument(@"user-data-dir=C:\Users\Aleksandar\AppData\Local\Google\Chrome\User Data");
-            IWebDriver driver = new ChromeDriver(this.ChromeDriverLocation, options);
-
+            IWebDriver driver = new ChromeDriver(ChromeDriverLocation, options);
             return driver;
         }
 
         public IWebDriver GetNewChromeInstance()
         {
-            IWebDriver driver = new ChromeDriver(this.ChromeDriverLocation);
+            IWebDriver driver = new ChromeDriver(ChromeDriverLocation);
             return driver;
         }
     }
