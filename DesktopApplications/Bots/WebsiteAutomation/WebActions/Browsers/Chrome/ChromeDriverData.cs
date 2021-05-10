@@ -2,7 +2,9 @@
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,7 +34,7 @@ namespace WebActions.Browsers.Chrome
             }
         }
 
-        public static string ChromeDriverLocation = @"D:\001-AleksandarLazarevic\001-Documents\004-GitHub\Custom-Applications\DesktopApplications\Bots\WebsiteAutomation\WebDrivers\Chrome\90.0.4430.24";
+        public static string ChromeDriverLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\..\WebsiteAutomation\WebActions\WebDrivers\Chrome\90.0.4430.24");
 
         public static IWebDriver GetChromeInstanceWithUserProfile()
         {
@@ -41,12 +43,12 @@ namespace WebActions.Browsers.Chrome
             options.AddArgument("--ignore-certificate-errors");
             options.AddArgument("no-sandbox");
             options.AddArgument("disable-infobars");
-            //options.AddArgument("--headless"); //hide browser
+            options.AddArgument("--headless"); //hide browser
             options.AddArgument("--start-maximized");
             //options.AddArgument("--window-size=1100,300");
             //options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
             // Profile [Change:User name]
-            options.AddArgument(@"user-data-dir=C:\Users\Aleksandar\AppData\Local\Google\Chrome\User Data");
+            options.AddArgument(@"user-data-dir=C:\Users\User\AppData\Local\Google\Chrome\User Data");
             IWebDriver driver = new ChromeDriver(ChromeDriverLocation, options);
             return driver;
         }

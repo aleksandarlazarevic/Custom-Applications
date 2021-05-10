@@ -27,7 +27,7 @@ namespace WebActions
             var element = driver.FindElement(By.Id("FormRow-BUY-price"));
             var value = element.GetAttribute("value");
 
-            string filePath = @"D:\values.txt";
+            string filePath = AppDomain.CurrentDomain.BaseDirectory + "values.txt";
             using (StreamWriter outputFile = new StreamWriter(filePath, true))
             {
                 outputFile.WriteLine(value);
@@ -40,7 +40,7 @@ namespace WebActions
         public static void StartTrading()
         {
             //NavigateToCryptoPage("ADA", driver);
-            CheckCoinValue(20000);
+            CheckCoinValue(30000);
         }
         public static void StopTrading()
         {

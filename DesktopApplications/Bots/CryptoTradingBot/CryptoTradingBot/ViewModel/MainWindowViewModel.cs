@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WebActions;
+using WebActions.Browsers.Chrome;
 
 namespace CryptoTradingBot.ViewModel
 {
