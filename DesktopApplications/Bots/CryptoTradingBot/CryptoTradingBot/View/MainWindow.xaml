@@ -8,7 +8,7 @@
         Title="Crypto Trading Bot" Height="450" Width="800">
     <Grid>
         <ComboBox ItemsSource="{Binding CoinList}" SelectedItem="{Binding SelectedCoin}" 
-                  HorizontalAlignment="Center" MinWidth="400" Width="auto" Height="40"/>
+                  HorizontalAlignment="Center" MinWidth="400" Width="auto" Height="25"/>
         <Button x:Name="StartTradingsButton" Margin="353,330,279,49" Content="Start Trading" 
                     Width="160" Height="40" Command="{Binding StartTradingCommand}"/>
         <Button x:Name="StopTradingsButton" Margin="591,330,41,49" Content="Stop Trading" 
