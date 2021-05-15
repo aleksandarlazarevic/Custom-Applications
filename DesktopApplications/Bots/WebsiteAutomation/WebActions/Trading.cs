@@ -25,24 +25,34 @@ namespace WebActions
 
         private static decimal lastSellingPrice = decimal.Zero;
         private static decimal lastBuyingPrice = decimal.Zero;
+        private static DateTime startingTime;
+        private static List<decimal> valueChanges = new List<decimal>();
 
 
         private static void OnTimedValueCheck(Object source, ElapsedEventArgs e)
         {
-            ProcessValues();
+            DateTime currentTime = e.SignalTime;
+            int hours = (currentTime - startingTime).Hours;
+            currentValue = GetCurrentValue();
+            valueChanges.Add(currentValue);
+
+            //if (hours.Equals(1))
+            //{
+                ProcessValues();
+            //}
+
         }
 
         private static void ProcessValues()
         {
-            currentValue = GetCurrentValue();
             ProcessCurrentValue(currentValue);
             previousValue = currentValue;
-            WriteToLog(currentValue.ToString());
+            WriteToLog(currentValue.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
         }
 
-        private static void WriteToLog(string valueToWrite)
+        private static void WriteToLog(string valueToWrite, string fileName)
         {
-            string filePath = AppDomain.CurrentDomain.BaseDirectory + "values.txt";
+            string filePath = AppDomain.CurrentDomain.BaseDirectory + fileName;
             using (StreamWriter outputFile = new StreamWriter(filePath, true))
             {
                 outputFile.WriteLine(valueToWrite);
@@ -53,15 +63,20 @@ namespace WebActions
         {
             if (!previousValue.Equals(decimal.Zero))
             {
-                if ((currentValue > previousValue) && buyingState.Equals("alreadySold"))
+                var averageValue = valueChanges.Average();
+                WriteToLog(DateTime.Now.ToString("HH:mm:ss tt") + " Current average price:" + averageValue, "AverageValues.txt");
+                if ((currentValue < averageValue) && buyingState.Equals("alreadySold"))
                 {
                     BuyTheCoin(currentValue);
-                    buyingState = "alreadyBought";
                 }
-                else if ((currentValue < previousValue) && buyingState.Equals("alreadyBought"))
+                else if ((currentValue > ((decimal)1.001* lastBuyingPrice)) && buyingState.Equals("alreadyBought"))
                 {
                     SellTheCoin(currentValue);
-                    buyingState = "alreadySold";
+                }
+                else if (currentValue < ((decimal)0.8*lastBuyingPrice) && buyingState.Equals("alreadyBought"))
+                {
+                    WriteToLog(DateTime.Now.ToString("HH:mm:ss tt") + " PANIC SOLD AT:" + averageValue, "values.txt");
+                    SellTheCoin(currentValue);
                 }
             }
         }
@@ -72,28 +87,29 @@ namespace WebActions
             {
                 lastSellingPrice = currentValue;
             }          
-            WriteToLog("--Sold at " + currentValue.ToString() + " price");
-            WriteToLog("--Previous price was " + previousValue.ToString());
-            decimal buyingBudgetAfterFees = (lastBuyingPrice - lastBuyingPrice / 1000);
-            decimal profit = buyingBudgetAfterFees - lastSellingPrice;
-            WriteToLog("--Buying budget with fees calculated in was " + (buyingBudgetAfterFees).ToString());
-            WriteToLog("***Profit: " + profit.ToString());
-            WriteToLog("*Percentage: " + (profit / buyingBudgetAfterFees * 100).ToString() + "%");
+            WriteToLog("--Sold at " + currentValue.ToString() + " price", "values.txt");
             lastSellingPrice = currentValue;
+            decimal buyingBudgetAfterFees = (lastBuyingPrice - lastBuyingPrice / 1000);
+            decimal sellingBudgetAfterFees = (lastSellingPrice - lastSellingPrice / 1000);
+            decimal profit = sellingBudgetAfterFees - buyingBudgetAfterFees;
+            WriteToLog("--Buying budget with fees calculated in was " + buyingBudgetAfterFees.ToString(), "values.txt");
+            WriteToLog("--Selling budget with fees calculated in was " + sellingBudgetAfterFees.ToString(), "values.txt");
+            WriteToLog("***Profit: " + profit.ToString(), "values.txt");
+            WriteToLog("*Percentage: " + ((double)(profit / buyingBudgetAfterFees * 100)).ToString() + "%", "values.txt");
+            buyingState = "alreadySold";
         }
 
         private static void BuyTheCoin(decimal currentValue)
         {
             lastBuyingPrice = currentValue;
-            WriteToLog("Bought at " + currentValue.ToString() + " price");
-            WriteToLog("Previous price was " + previousValue.ToString());
+            WriteToLog("Bought at " + currentValue.ToString() + " price", "values.txt");
+            buyingState = "alreadyBought";
         }
 
         private static decimal GetCurrentValue()
         {
             IWebDriver driver = ChromeDriverData.GetChromeInstanceWithUserProfile();
             driver.Manage().Window.Maximize();
-            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}");
             driver.Navigate().GoToUrl(selectedCoinUrl);
             var element = driver.FindElement(By.Id("FormRow-BUY-price"));
             currentValue = decimal.Parse(element.GetAttribute("value"), CultureInfo.InvariantCulture);
@@ -104,6 +120,7 @@ namespace WebActions
 
         public static void StartTrading(string selectedCoin)
         {
+            startingTime = DateTime.Now;
             selectedCoinUrl = selectedCoin;
             buyingState = "alreadySold";
             //NavigateToCryptoPage("ADA", driver);
