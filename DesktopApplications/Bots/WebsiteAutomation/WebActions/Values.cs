@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using WebActions.Browsers.Chrome;
 
@@ -32,10 +33,11 @@ namespace WebActions
                 {
                     Trading.SellTheCoin(currentValue);
                 }
-                else if (currentValue < ((decimal)0.95 * TradeInfo.lastBuyingPrice) && Trading.buyingState.Equals(BuyingState.AlreadyBought))
+                else if ((currentValue < ((decimal)0.97 * TradeInfo.lastBuyingPrice)) && Trading.buyingState.Equals(BuyingState.AlreadyBought))
                 {
                     Utilities.WriteToLog(DateTime.Now.ToString("HH:mm:ss tt") + " PANIC SOLD AT:" + AverageValue, "values.txt");
                     Trading.SellTheCoin(currentValue);
+                    Trading.shouldStartTrading = false;
                 }
             }
         }
@@ -50,11 +52,13 @@ namespace WebActions
             IWebDriver driver = ChromeDriverData.GetChromeInstanceWithUserProfile();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(Trading.SelectedCoinUrl);
+            Thread.Sleep(1000);
             var element = driver.FindElement(By.Id("FormRow-BUY-price"));
 
             //IWebDriver driver = AutomationActions.GetWebdriver(Trading.SelectedCoinUrl);
             //IWebElement element = driver.FindElement(By.Id("FormRow-BUY-price"));
             CurrentValue = decimal.Parse(element.GetAttribute("value"), CultureInfo.InvariantCulture);
+
             driver.Close();
             driver.Dispose();
         }

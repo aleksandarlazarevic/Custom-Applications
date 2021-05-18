@@ -39,10 +39,10 @@ namespace WebActions.Browsers.Chrome
         public static IWebDriver GetChromeInstanceWithUserProfile()
         {
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("test-type");
+            //options.AddArgument("test-type");
             options.AddArgument("--ignore-certificate-errors");
-            options.AddArgument("no-sandbox");
-            options.AddArgument("disable-infobars");
+            //options.AddArgument("no-sandbox");
+            //options.AddArgument("disable-infobars");
             options.AddArgument("--headless"); //hide browser
             options.AddArgument("--start-maximized");
             //options.AddArgument("--window-size=1100,300");

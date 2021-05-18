@@ -52,7 +52,7 @@ namespace CryptoTradingBot.ViewModel
             this.StartTradingCommand = new RelayCommand(this.OnStartTrading);
             this.StopTradingCommand = new RelayCommand(this.OnStopTrading);
             this.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
-            CoinList = new ObservableCollection<string> { "https://www.binance.com/en/trade/ADA_BNB?type=spot", "https://www.binance.com/en/trade/LTC_BNB?type=spot" };
+            CoinList = new ObservableCollection<string> { "https://www.binance.com/en/trade/ADA_USDT?type=spot", "https://www.binance.com/en/trade/LTC_BNB?type=spot" };
             SelectedCoin = CoinList.First();
 
         }
