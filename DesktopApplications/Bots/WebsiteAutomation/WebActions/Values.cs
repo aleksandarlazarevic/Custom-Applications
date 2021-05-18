@@ -13,6 +13,8 @@ namespace WebActions
     public class Values
     {
         public static decimal CurrentValue = decimal.Zero;
+        public static string CurrentValueApi = string.Empty;
+
         public static decimal PreviousValue = decimal.Zero;
         public static List<decimal> ValueChanges = new List<decimal>();
         public static decimal AverageValue = decimal.Zero;
@@ -58,6 +60,8 @@ namespace WebActions
             //IWebDriver driver = AutomationActions.GetWebdriver(Trading.SelectedCoinUrl);
             //IWebElement element = driver.FindElement(By.Id("FormRow-BUY-price"));
             CurrentValue = decimal.Parse(element.GetAttribute("value"), CultureInfo.InvariantCulture);
+            CurrentValueApi = BinanceApi.GetCurrentValue().ToString();
+
 
             driver.Close();
             driver.Dispose();
@@ -65,7 +69,7 @@ namespace WebActions
         public static void LogCurrentValue()
         {
             PreviousValue = CurrentValue;
-            Utilities.WriteToLog(CurrentValue.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+            Utilities.WriteToLog(CurrentValue.ToString() + " API:" + Values.CurrentValueApi + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
         }
     }
 }

@@ -49,6 +49,7 @@ namespace CryptoTradingBot.ViewModel
 
         public MainWindowViewModel()
         {
+            //BinanceApi.TestApi();
             this.StartTradingCommand = new RelayCommand(this.OnStartTrading);
             this.StopTradingCommand = new RelayCommand(this.OnStopTrading);
             this.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
