@@ -5,14 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptoTradingBot"
         mc:Ignorable="d"
-        Title="Crypto Trading Bot" Height="450" Width="800">
-    <Grid>
-        <ComboBox ItemsSource="{Binding CoinList}" SelectedItem="{Binding SelectedCoin}" 
-                  HorizontalAlignment="Center" MinWidth="400" Width="auto" Height="25"/>
-        <Button x:Name="StartTradingsButton" Margin="353,330,279,49" Content="Start Trading" 
-                    Width="160" Height="40" Command="{Binding StartTradingCommand}"/>
-        <Button x:Name="StopTradingsButton" Margin="591,330,41,49" Content="Stop Trading" 
-                    Width="160" Height="40" Command="{Binding StopTradingCommand}"/>
-        
-    </Grid>
+        Title="Crypto Trading Bot" Height="450" Width="800"
+        Background="{Binding BackgroundColor}">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="50">
+            <Label  Content="Api Key:" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding ApiKey}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="567" Height="30" Margin="14,0"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="50">
+            <Label Content="Api Secret:" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding ApiSecret}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="566" Height="30" Margin="0,5" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Left" Margin="10, 10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextWrapping="WrapWithOverflow" Text="Panic sell percentage [%]:" VerticalAlignment="Stretch" Width="62"/>
+                <TextBox Text="{Binding PanicSellPercentage}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="58" Height="30" Margin="0,5">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <DockPanel Width="150" Height="80">
+                                <TextBlock TextWrapping="Wrap"><Run Text="Sell if price suddenly drops to this percentage, compared to the buying price."/></TextBlock>
+                            </DockPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 10">
+                <TextBlock TextWrapping="WrapWithOverflow" Text="Panic sell time [minutes]:" VerticalAlignment="Center" Width="52"/>
+                <TextBox Text="{Binding PanicSellTimeout}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="58" Height="30" Margin="10,10,0,9">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <DockPanel Width="150" Height="80">
+                                <TextBlock TextWrapping="Wrap"><Run Text="Sell if this much time goes without selling (assuming that the price dropped too much)."/></TextBlock>
+                            </DockPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <!--<StackPanel>
+            <TextBlock TextWrapping="WrapWithOverflow" Text="Current Value:" VerticalAlignment="Stretch" Width="62"/>
+            <TextBox Text="{Binding PanicSellTimeout}" Width="58" Height="40" />
+             </StackPanel>-->
+            <StackPanel Orientation="Horizontal"  Margin="0, 10">
+                <TextBlock TextWrapping="WrapWithOverflow" Text="Average price calculation interval [minutes]:" VerticalAlignment="Center" Width="60" Margin="0,4,0,3"/>
+                <TextBox Text="{Binding AverageValueCalculationPeriod}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="61" Height="30">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <DockPanel Width="150" Height="80">
+                                <TextBlock TextWrapping="Wrap"><Run Text="Gather price values for this amount of time before calculating the average price that is to be used when buying."/></TextBlock>
+                            </DockPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextWrapping="WrapWithOverflow" Text="Expected profit per trade [%]:" VerticalAlignment="Center" Width="60" />
+                <TextBox Text="{Binding SellingPercentage}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="61" Height="30">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <DockPanel Width="150" Height="80">
+                                <TextBlock TextWrapping="Wrap"><Run Text="Sell when the value becomes this much bigger than the buying price"/></TextBlock>
+                            </DockPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="50,0">
+            <StackPanel>
+                <ComboBox ItemsSource="{Binding CoinList}" SelectedItem="{Binding SelectedCoin}" 
+                HorizontalAlignment="Center" MinWidth="400" Width="auto" Height="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock TextWrapping="WrapWithOverflow" Text="Buying threshold price:" VerticalAlignment="Center" Width="60" />
+                <TextBox Text="{Binding BuyingMargin}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="61" Height="30">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <DockPanel Width="150" Height="80">
+                                <TextBlock TextWrapping="Wrap"><Run Text="Sell when the value becomes this much bigger than the buying price"/></TextBlock>
+                            </DockPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox x:Name="automatedThresholdCalculationCheckbox" IsChecked="{Binding CalculateBuyingThresholdAutomatically}" />
+                <TextBlock Margin="10,0,0,0" Text="Automatically recalculate buying threshold" RenderTransformOrigin="0.5,0.5" Width="242"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20">
+            <Button x:Name="StartTradingsButton" Content="Start Trading" Width="300" Height="40" Command="{Binding StartTradingCommand}"/>
+            <!--<Button x:Name="StopTradingsButton" Margin="611,330,56,49" Content="Stop Trading" Height="40" Command="{Binding StopTradingCommand}"/>-->
+        </StackPanel>
+    </DockPanel>
 </Window>

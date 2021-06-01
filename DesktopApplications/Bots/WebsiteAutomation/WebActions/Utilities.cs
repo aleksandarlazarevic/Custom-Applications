@@ -12,9 +12,15 @@ namespace WebActions
         public static void WriteToLog(string valueToWrite, string fileName)
         {
             string filePath = AppDomain.CurrentDomain.BaseDirectory + fileName;
-            using (StreamWriter outputFile = new StreamWriter(filePath, true))
+            try
             {
-                outputFile.WriteLine(valueToWrite);
+                using (StreamWriter outputFile = new StreamWriter(filePath, true))
+                {
+                    outputFile.WriteLine(valueToWrite);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
