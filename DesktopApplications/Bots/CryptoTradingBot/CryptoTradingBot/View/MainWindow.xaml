@@ -72,6 +72,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Margin="50,0">
+            <Label>Selected coin:</Label>
             <StackPanel>
                 <ComboBox ItemsSource="{Binding CoinList}" SelectedItem="{Binding SelectedCoin}" 
                 HorizontalAlignment="Center" MinWidth="400" Width="auto" Height="25"/>
@@ -91,6 +92,41 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <CheckBox x:Name="automatedThresholdCalculationCheckbox" IsChecked="{Binding CalculateBuyingThresholdAutomatically}" />
                 <TextBlock Margin="10,0,0,0" Text="Automatically recalculate buying threshold" RenderTransformOrigin="0.5,0.5" Width="242"></TextBlock>
+            </StackPanel>
+            <StackPanel>
+                <Label>Paired coin:</Label>
+                <ComboBox ItemsSource="{Binding PairedCoinList}" SelectedItem="{Binding SelectedPairedCoin}" 
+                HorizontalAlignment="Center" MinWidth="400" Width="auto" Height="25"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,150,0">
+                    <TextBlock TextWrapping="WrapWithOverflow" Text="Custom buying threshold price:" VerticalAlignment="Center" Width="90" />
+                    <TextBox Text="{Binding CustomBuyingMargin}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="61" Height="30">
+                        <TextBox.ToolTip>
+                            <ToolTip>
+                                <DockPanel Width="150" Height="80">
+                                    <TextBlock TextWrapping="Wrap"><Run Text="Buy when the current value is bigger than this price"/></TextBlock>
+                                </DockPanel>
+                            </ToolTip>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock TextWrapping="WrapWithOverflow" Text="Custom Selling threshold price:" VerticalAlignment="Center" Width="90" />
+                    <TextBox Text="{Binding CustomSellingMargin}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Width="61" Height="30">
+                        <TextBox.ToolTip>
+                            <ToolTip>
+                                <DockPanel Width="150" Height="80">
+                                    <TextBlock TextWrapping="Wrap"><Run Text="Sell when the current value is smaller than this price"/></TextBlock>
+                                </DockPanel>
+                            </ToolTip>
+                        </TextBox.ToolTip>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox x:Name="customThresholdCalculationCheckbox" IsChecked="{Binding CustomlyCalculateBuyingThresholds}" />
+                <TextBlock Margin="10,0,0,0" Text="Customly select thresholds" RenderTransformOrigin="0.5,0.5" Width="242"></TextBlock>
             </StackPanel>
         </StackPanel>
 

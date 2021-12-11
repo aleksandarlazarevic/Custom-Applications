@@ -31,6 +31,7 @@ namespace WebActions
         private static System.Timers.Timer ValueCheckTimer;
         public static string SelectedCoinUrl = string.Empty;
         private static DateTime StartingTime;
+        private static DateTime Starting24hValueInspectionTime;
         public static bool shouldStartTrading = false;
         public static BuyingState buyingState;
         public static string apiKey = string.Empty;
@@ -41,18 +42,22 @@ namespace WebActions
         private static bool sellingInProgress;
         public static decimal SellingPercentage { get; set; }
         public static decimal BuyingThreshold { get; set; }
+        public static decimal CustomBuyingThreshold { get; set; }
+        public static decimal CustomSellingThreshold { get; set; }
         public static bool CalculateBuyingThresholdAutomatically { get; set; }
-
+        public static bool CustomlyCalculateBuyingThresholds { get; set; }       
         public static void StartTrading(string selectedCoin)
         {
             StartingTime = DateTime.Now;
+            Starting24hValueInspectionTime = DateTime.Now;
             SelectedCoinUrl = selectedCoin;
             buyingInProgress = false;
             sellingInProgress = false;
             buyingState = BuyingState.AlreadySold;
+            Values.Last24hPrices = Values.GetLast24hValues(Coin.Pair);
 
             //NavigateToCryptoPage("ADA", driver);
-            Values.GetCurrentValue();
+            Values.GetCurrentValue(Coin.Pair);
             Values.LogCurrentValue();
             PeriodicallyCheckCoinValue(1000);
         }
@@ -82,25 +87,38 @@ namespace WebActions
 
                 Values.accountInfo = client.General.GetAccountInfo();
 
-                decimal usdtBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals("USDT")).Select(t => t.Free).First();
+                decimal pairedCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.PairedCoin)).Select(t => t.Free).First();
+                Utilities.WriteToLog(Coin.PairedCoin + " pre-BUYing value: " + pairedCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
 
-                if (usdtBalance > (decimal)1)
+                if (pairedCoinBalance > (decimal)1)
                 {
                     try
                     {
-                        var result = await client.Spot.Order.PlaceOrderAsync(Coin.Pair, OrderSide.Buy, OrderType.Market, quoteOrderQuantity: usdtBalance).ConfigureAwait(true);
+                        var result = await client.Spot.Order.PlaceOrderAsync(Coin.Pair, OrderSide.Buy, OrderType.Market, quoteOrderQuantity: pairedCoinBalance).ConfigureAwait(true);
                         if (result.Success)
                         {
                             Utilities.WriteToLog("Bought at " + currentValue.ToString() + " price", "values.txt");
                             Trading.buyingState = BuyingState.AlreadyBought;
                             Values.accountInfo = client.General.GetAccountInfo();
+                            //Values.PreviousWalletAmount = Values.GetWalletValue();
+
                             buyingInProgress = false;
                             sellingInProgress = false;
                             //await WaitForBuyingToComplete();
+
+                            decimal postbuyingPairedCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.PairedCoin)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.PairedCoin + " post-BUYing value: " + postbuyingPairedCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+                            decimal postbuyingCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.Name)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.Name + " post-BUYing value: " + postbuyingCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
                         }
                         else
                         {
                             MessageBox.Show("Buying coin Failed: " + result.Error.Message);
+
+                            decimal failedBuyingPairedCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.PairedCoin)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.PairedCoin + " failed BUYing value: " + failedBuyingPairedCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+                            decimal failedBuyingCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.Name)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.Name + " failed BUYing value: " + failedBuyingCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
                         }
                     }
                     catch (Exception ex)
@@ -142,14 +160,22 @@ namespace WebActions
                     LogWriters = new List<TextWriter> { Console.Out }
                 });
 
+                Values.accountInfo = client.General.GetAccountInfo();
+
                 decimal coinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.Name)).Select(t => t.Free).First();
+
+                decimal preSellingPairedCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.PairedCoin)).Select(t => t.Free).First();
+                Utilities.WriteToLog(Coin.PairedCoin + " pre-SELLing value: " + preSellingPairedCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+                Utilities.WriteToLog(Coin.Name + " pre-SELLing value: " + coinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
                 int roundedBalance = (int)Math.Floor(coinBalance * currentValue);
 
                 if (roundedBalance > (decimal)1)
                 {
                     try
                     {
+                        Utilities.WriteToLog("Trying to sell: " + Coin.Pair + ", balance: " + roundedBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
                         var result = await client.Spot.Order.PlaceOrderAsync(Coin.Pair, OrderSide.Sell, OrderType.Market, quoteOrderQuantity: roundedBalance).ConfigureAwait(true);
+                        Thread.Sleep(3000);
                         if (result.Success)
                         {
                             Utilities.WriteToLog("--Sold at " + currentValue.ToString() + " price", "values.txt");
@@ -157,17 +183,32 @@ namespace WebActions
                             Utilities.WriteToLog("*Percentage: " + ((double)(profit / buyingBudgetAfterFees * 100)).ToString() + "%", "values.txt");
                             Trading.buyingState = BuyingState.AlreadySold;
                             Values.accountInfo = client.General.GetAccountInfo();
+                            //Values.PreviousWalletAmount = Values.GetWalletValue();
+
                             shouldStartTrading = false;
                             sellingInProgress = false;
+
+                            decimal postSellingPairedCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.PairedCoin)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.PairedCoin + " post-SELLing value: " + postSellingPairedCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+                            decimal postSellingCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.Name)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.Name + " post-SELLing value: " + postSellingCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
                         }
                         else
                         {
                             MessageBox.Show("Selling coin Failed: " + result.Error.Message);
+                            sellingInProgress = false;
+
+                            Utilities.WriteToLog("Selling coin Failed: " + result.Error.Message + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+                            decimal failedSellingPairedCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.PairedCoin)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.PairedCoin + " failed SELLing value: " + failedSellingPairedCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
+                            decimal failedSellingCoinBalance = Values.accountInfo.Data.Balances.Where(p => p.Asset.Equals(Coin.Name)).Select(t => t.Free).First();
+                            Utilities.WriteToLog(Coin.Name + " failed SELLing value: " + failedSellingCoinBalance.ToString() + "--" + DateTime.Now.ToString("HH:mm:ss tt"), "values.txt");
                         }
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                        sellingInProgress = false;
                     }
                 }
 
@@ -217,7 +258,9 @@ namespace WebActions
         {
             DateTime currentTime = e.SignalTime;
             int minutes = (currentTime - StartingTime).Minutes;
-            Values.GetCurrentValue();
+            int dailyPriceRetrievalThreshold = (currentTime - Starting24hValueInspectionTime).Hours;
+            
+            Values.GetCurrentValue(Coin.Pair);
             Values.LogCurrentValue();
             Values.ValueChanges.Add(Values.CurrentValue);
 
@@ -225,10 +268,15 @@ namespace WebActions
             {
                 CalculateAverageValue();
             }
+            if (dailyPriceRetrievalThreshold.Equals(6))
+            {
+                Values.Last24hPrices = Values.GetLast24hValues(Coin.Pair);
+                Starting24hValueInspectionTime = currentTime;
+            }
+
             CheckIfShouldPanicSell();
 
             Values.DecideBasedOnTheCurrentValue(Values.CurrentValue);
-
         }
 
         private static void CheckIfShouldPanicSell()

@@ -9,6 +9,7 @@ namespace WebActions
     public class Coin
     {
         public static string Name { get; set; }
+        public static string PairedCoin { get; set; }
         public static string Pair { get; set; }
     }
 }

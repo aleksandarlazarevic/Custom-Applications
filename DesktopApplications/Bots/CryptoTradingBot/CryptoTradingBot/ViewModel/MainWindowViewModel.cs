@@ -20,6 +20,7 @@ namespace CryptoTradingBot.ViewModel
         public RelayCommand StartTradingCommand { get; set; }
         public RelayCommand StopTradingCommand { get; set; }
         public static ObservableCollection<string> CoinList { get; set; }
+        public static ObservableCollection<string> PairedCoinList { get; set; }
 
         private string selectedCoin;
         public string SelectedCoin
@@ -28,6 +29,15 @@ namespace CryptoTradingBot.ViewModel
             set
             {
                 this.SetProperty(ref this.selectedCoin, value);
+            }
+        }
+        private string selectedPairedCoin;
+        public string SelectedPairedCoin
+        {
+            get { return this.selectedPairedCoin; }
+            set
+            {
+                this.SetProperty(ref this.selectedPairedCoin, value);
             }
         }
         private string apiKey;
@@ -98,7 +108,25 @@ namespace CryptoTradingBot.ViewModel
                 this.SetProperty(ref this.buyingMargin, value);
             }
         }
-        
+        private string customBuyingMargin;
+        public string CustomBuyingMargin
+        {
+            get { return this.customBuyingMargin; }
+            set
+            {
+                this.SetProperty(ref this.customBuyingMargin, value);
+            }
+        }
+        private string customSellingMargin;
+        public string CustomSellingMargin
+        {
+            get { return this.customSellingMargin; }
+            set
+            {
+                this.SetProperty(ref this.customSellingMargin, value);
+            }
+        }
+
         private bool calculateBuyingThresholdAutomatically;
         public bool CalculateBuyingThresholdAutomatically
         {
@@ -106,6 +134,15 @@ namespace CryptoTradingBot.ViewModel
             set
             {
                 this.SetProperty(ref this.calculateBuyingThresholdAutomatically, value);
+            }
+        }
+        private bool customlyCalculateBuyingThresholds;
+        public bool CustomlyCalculateBuyingThresholds
+        {
+            get { return this.customlyCalculateBuyingThresholds; }
+            set
+            {
+                this.SetProperty(ref this.customlyCalculateBuyingThresholds, value);
             }
         }
         protected virtual void SetProperty<T>(
@@ -128,6 +165,10 @@ namespace CryptoTradingBot.ViewModel
             {
                 Trading.CalculateBuyingThresholdAutomatically = CalculateBuyingThresholdAutomatically;
             }
+            if (e.PropertyName.Equals("CustomlyCalculateBuyingThresholds"))
+            {
+                Trading.CustomlyCalculateBuyingThresholds = CustomlyCalculateBuyingThresholds;
+            }
         }
 
         public MainWindowViewModel()
@@ -135,18 +176,23 @@ namespace CryptoTradingBot.ViewModel
             BackgroundColor = Brushes.SkyBlue;
             PanicSellPercentage = "90";
             PanicSellTimeout = "60";
-            AverageValueCalculationPeriod = "20";
+            AverageValueCalculationPeriod = "5";
             SellingPercentage = "0.35";
             BuyingThreshold = "0";
+            CustomBuyingMargin = "0.005680";
+            CustomSellingMargin = "0.005830";
             CalculateBuyingThresholdAutomatically = false;
             //BinanceApi.TestApi();
             this.StartTradingCommand = new RelayCommand(this.OnStartTrading);
             this.StopTradingCommand = new RelayCommand(this.OnStopTrading);
             this.PropertyChanged += new PropertyChangedEventHandler(this.OnPropertyChanged);
-            CoinList = new ObservableCollection<string> { "BNB", "LTC", "ADA", "TUSD" };
+            CoinList = new ObservableCollection<string> { "ADA", "RVN", "BNB", "LTC", "TUSD" };
             SelectedCoin = CoinList.First();
             Coin.Name = SelectedCoin;
-            Coin.Pair = Coin.Name + "USDT";
+            PairedCoinList = new ObservableCollection<string> { "BNB", "USDT" };
+            SelectedPairedCoin = PairedCoinList.First();
+            Coin.PairedCoin = SelectedPairedCoin;
+            Coin.Pair = Coin.Name + Coin.PairedCoin;
         }
 
         private void OnStartTrading()
@@ -156,11 +202,16 @@ namespace CryptoTradingBot.ViewModel
             Trading.PanicSellPercentage = decimal.Parse(this.PanicSellPercentage, CultureInfo.InvariantCulture)/100;
             Trading.PanicSellTimeout = decimal.Parse(this.PanicSellTimeout, CultureInfo.InvariantCulture);
             Trading.BuyingThreshold = decimal.Parse(this.BuyingThreshold, CultureInfo.InvariantCulture);
-            Trading.CalculateBuyingThresholdAutomatically = CalculateBuyingThresholdAutomatically;
-
+            Trading.CustomBuyingThreshold = decimal.Parse(this.CustomBuyingMargin, CultureInfo.InvariantCulture);
+            Trading.CustomSellingThreshold = decimal.Parse(this.CustomSellingMargin, CultureInfo.InvariantCulture);
+            //CalculateBuyingThresholdAutomatically = true;
+            //Trading.CalculateBuyingThresholdAutomatically = CalculateBuyingThresholdAutomatically;
+            //CustomlyCalculateBuyingThresholds = true;
+            Trading.CustomlyCalculateBuyingThresholds = CustomlyCalculateBuyingThresholds;
             Trading.SellingPercentage = 1 + decimal.Parse(this.SellingPercentage, CultureInfo.InvariantCulture)/100;
             Trading.AverageValueCalculationPeriod = int.Parse(this.AverageValueCalculationPeriod, CultureInfo.InvariantCulture);
             Values.GetAccountInfo();
+
             MessageBox.Show("Started Trading");
             Trading.StartTrading(SelectedCoin);
         }
