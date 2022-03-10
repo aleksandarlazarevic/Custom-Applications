@@ -79,7 +79,7 @@ namespace WebActions
             decimal usdtBalance = accountInfo.Data.Balances.Where(p => p.Asset.Equals("USDT")).Select(t => t.Free).First();
             decimal adaBalance = accountInfo.Data.Balances.Where(p => p.Asset.Equals("ADA")).Select(t => t.Free).First();
             
-            int rounded = (int)Math.Floor(adaBalance* BinanceApi.GetCurrentValue());
+            int rounded = (int)Math.Floor(adaBalance* BinanceApi.GetCurrentValue(Coin.Pair));
             var result = await client.Spot.Order.PlaceOrderAsync("ADAUSDT", OrderSide.Buy, OrderType.Market, quoteOrderQuantity: usdtBalance).ConfigureAwait(false);
 
             try
@@ -102,9 +102,9 @@ namespace WebActions
             }
             client.Dispose();
         }
-        public static decimal GetCurrentValue()
+        public static decimal GetCurrentValue(string coinToCheck)
         {
-            WebRequest webrequest = WebRequest.Create("https://api.binance.com/api/v3/ticker/price?symbol=" + Coin.Pair);
+            WebRequest webrequest = WebRequest.Create("https://api.binance.com/api/v3/ticker/price?symbol=" + coinToCheck);
             TokenValueFromApi tokenValue = new TokenValueFromApi();
 
             using (HttpWebResponse response = (HttpWebResponse)webrequest.GetResponse())
