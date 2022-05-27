@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeUsedForBinaryPlanting", "CodeUsedForBinaryPlanting\CodeUsedForBinaryPlanting.csproj", "{0FB44E87-E709-4B75-BAFC-9A373F2042C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFiles", "DataFiles\DataFiles.csproj", "{61C255D1-8E03-40E0-8442-6BB68E81CF70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FB44E87-E709-4B75-BAFC-9A373F2042C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB44E87-E709-4B75-BAFC-9A373F2042C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB44E87-E709-4B75-BAFC-9A373F2042C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB44E87-E709-4B75-BAFC-9A373F2042C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C255D1-8E03-40E0-8442-6BB68E81CF70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C255D1-8E03-40E0-8442-6BB68E81CF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C255D1-8E03-40E0-8442-6BB68E81CF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C255D1-8E03-40E0-8442-6BB68E81CF70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58E192CF-AB19-4DF5-97F8-3C40EEFD6A06}
+	EndGlobalSection
+EndGlobal
