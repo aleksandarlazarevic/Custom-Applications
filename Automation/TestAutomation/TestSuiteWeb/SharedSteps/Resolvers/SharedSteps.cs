@@ -1,5 +1,4 @@
-﻿using SeleniumCore.Containers;
-using TestSuiteWeb.SharedSteps.Contracts;
+﻿using TestSuiteWeb.SharedSteps.Contracts;
 
 namespace TestSuiteWeb.SharedSteps.Resolvers
 {
@@ -31,7 +30,7 @@ namespace TestSuiteWeb.SharedSteps.Resolvers
         public SharedSteps()
         {
             #region == Login Page ==
-            LoginSteps = ObjectInstantiator.Container.Resolve<ILoginSteps>();
+            LoginSteps = SharedContainer.Container.Resolve<ILoginSteps>();
             #endregion
         }
     }

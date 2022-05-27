@@ -21,7 +21,6 @@ namespace SeleniumCore.Base
         {
             SetTestContext();
             InitializeTestParameters();
-            SetDisplayResolution();
         }
 
         [TestCleanup]
@@ -40,11 +39,6 @@ namespace SeleniumCore.Base
         {
             TestInMemoryParameters.Instance.TestIdentifier = TestDriver.TestIdentifier;
             TestInMemoryParameters.Instance.TestIdentifierStartTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
-
-        private void SetDisplayResolution()
-        {
-            System.Diagnostics.Process.Start(@"nircmdc.exe", "setdisplay 1920 1080 32");
         }
         #endregion
     }
