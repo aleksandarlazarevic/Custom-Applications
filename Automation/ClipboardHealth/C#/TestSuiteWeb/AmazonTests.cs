@@ -10,7 +10,7 @@ namespace TestSuiteWeb
     {
         [TestMethod]
         [Priority(1)]
-        public void LoginAndLogout()
+        public void VerifySecondMostExpensiveTvSpecs()
         {
             try
             {

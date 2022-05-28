@@ -10,6 +10,8 @@ using SeleniumCore.Contracts.Drivers;
 using SeleniumCore.Base;
 using SeleniumCore.Handlers;
 using SeleniumExtras.PageObjects;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace SeleniumCore.WebDriver
 {
@@ -26,7 +28,6 @@ namespace SeleniumCore.WebDriver
         public static IWebDriver PopupWebDriver { get; set; }
         public static string MainWindowHandle { get; set; }
         public static string PopupWindowHandle { get; set; }
-        public static EventFiringWebDriver FiringDriver { get; set; }
         public static List<IWebDriver> webDrivers = new List<IWebDriver>();
         #endregion
 
@@ -39,7 +40,6 @@ namespace SeleniumCore.WebDriver
                 _pageLoadTimeout = TimeSpan.FromSeconds(pageLoadTime);
                 WebDriver = ObjectInstantiator.Container.Resolve<IDriver>(driverType).Initialize();
                 WebDriver.Manage().Window.Maximize();
-                FiringDriver = new EventFiringWebDriver(WebDriver);
                 webDrivers.Add(WebDriver);
             }
             catch (Exception ex)
@@ -86,10 +86,13 @@ namespace SeleniumCore.WebDriver
                     WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 }
 
-                if (FiringDriver != null)
+                using var bitmap = new Bitmap(1920, 1080);
+                using (var g = Graphics.FromImage(bitmap))
                 {
-                    FiringDriver.GetScreenshot().SaveAsFile(path, ScreenshotImageFormat.Jpeg);
+                    g.CopyFromScreen(0, 0, 0, 0,
+                    bitmap.Size, CopyPixelOperation.SourceCopy);
                 }
+                bitmap.Save(path, ImageFormat.Jpeg);
 
                 if (File.Exists(path))
                 {
@@ -129,10 +132,13 @@ namespace SeleniumCore.WebDriver
                     WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 }
 
-                if (FiringDriver != null)
+                using var bitmap = new Bitmap(1920, 1080);
+                using (var g = Graphics.FromImage(bitmap))
                 {
-                    FiringDriver.GetScreenshot().SaveAsFile(filePath, ScreenshotImageFormat.Jpeg);
+                    g.CopyFromScreen(0, 0, 0, 0,
+                    bitmap.Size, CopyPixelOperation.SourceCopy);
                 }
+                bitmap.Save(filePath, ImageFormat.Jpeg);
 
                 if (File.Exists(filePath))
                 {

@@ -3,5 +3,6 @@
     public interface ILoginSteps
     {
         void StepSimpleLogin();
+        void StepNavigateToPage();
     }
 }

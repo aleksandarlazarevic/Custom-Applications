@@ -18,7 +18,8 @@ namespace SeleniumCore.WebDriver.Browsers
                 Processes.KillProcess(TestInMemoryParameters.Instance.WebDriver, "chrome");
             }
 
-            ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService();
+            string driverLocation = AppDomain.CurrentDomain.BaseDirectory + "BrowserDrivers\\";
+            ChromeDriverService chromeDriverService = ChromeDriverService.CreateDefaultService(driverLocation);
             chromeDriverService.EnableVerboseLogging = true;
             chromeDriverService.LogPath = "seleniumLog.txt";
 

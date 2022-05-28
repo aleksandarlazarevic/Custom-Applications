@@ -11,7 +11,8 @@ namespace TestSuiteWeb.SharedSteps.Resolvers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                      Component.For<ILoginSteps>().ImplementedBy<LoginSteps>().LifestyleTransient());
+                      Component.For<ILoginSteps>().ImplementedBy<LoginSteps>().LifestyleTransient(),
+                      Component.For<IHomeSteps>().ImplementedBy<HomeSteps>().LifestyleTransient());
         }
     }
 }

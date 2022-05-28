@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="BrowserDrivers\chromedriver.exe" />
+    <Content Include="BrowserDrivers\chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +25,7 @@
     <PackageReference Include="RestSharp" Version="107.3.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.1.1" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="System.Management" Version="6.0.0" />
   </ItemGroup>
 

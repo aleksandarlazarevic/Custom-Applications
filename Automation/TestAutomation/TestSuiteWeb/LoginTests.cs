@@ -12,11 +12,11 @@ namespace TestSuiteWeb
     {
         [TestMethod]
         [Priority(1)]
-        public void LoginAndLogout()
+        public void BasicNavigationTests()
         {
             try
             {
-                TestDriver.RunStep(SharedSteps.Resolvers.SharedSteps.Containers.LoginSteps.StepSimpleLogin);
+                TestDriver.RunStep(SharedSteps.Resolvers.SharedSteps.Containers.LoginSteps.StepNavigateToPage);
 
             }
             catch (Exception ex)
