@@ -1,0 +1,8 @@
+Tests are located in the APITests class
+
+Bugs Found:
+1) POST method doesn't seem to be working properly, it returns 200 code but it also returns an empty string array for "subjects". Also, it would be more detailed if the API were to return the appropriate code in cases the record has been created successfully (201 CREATED), the record already exists (302 FOUND) or that the action cannot be competed due to server conflict (409 CONFLICT). Looks like the API does not accept POST request with multiple subjects, but it also does not accept the request with single subject among the given values.
+2) Similar behavior happens when submitting a POST request with properties array
+3) Given the POST request does not work, the GET request for that coin's data fails (as well for the other hash example in the documentation), as expected, so i've used the information from the github page with a working example (http://metadata-server-mock.herokuapp.com/, http://metadata-server-mock.herokuapp.com/metadata/2048c7e09308f9138cef8f1a81733b72e601d016eea5eef759ff2933416d617a696e67436f696e) in order to be able to write some tests
+4) Alongside the aforementioned coin examples that return no value, the API response code is 200 which shouldn't be the case
+5) Documentation on the github page that states the expected json format for Metadata GET request is not accurate, different properties are returned. The tests have been adjusted according the real return info in order to check whether some of the actual properties are returned without a value. Namely, 'preImage' and 'anSignatures' properties do not correspond to the actual ones returned
