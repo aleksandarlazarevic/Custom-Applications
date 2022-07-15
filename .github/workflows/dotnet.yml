@@ -33,4 +33,4 @@ jobs:
     - name: Build
       run: dotnet build ./Automation/IO/IOTests.sln --configuration Release --no-restore 
     - name: Test
-      run: dotnet test ./Automation/IO/IOTests/IOTests/bin/Release/netcoreapp3.1/IOTests.dll --no-build --verbosity normal
+      run: dotnet test ./Automation/IO/IOTests/bin/Release/netcoreapp3.1/IOTests.dll --no-build --verbosity normal
