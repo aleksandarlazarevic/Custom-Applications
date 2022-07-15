@@ -30,8 +30,8 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Custom-Applications/Automation/IO/IOTests.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Custom-Applications/Automation/IO/IOTests.sln --configuration Release --no-restore 
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Custom-Applications/Automation/IO/IOTests.sln --no-build --verbosity normal
