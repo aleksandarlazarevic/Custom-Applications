@@ -245,25 +245,4 @@ namespace IOTests
         }
         #endregion
     }
-
-    public class OrderedTestAttribute : Attribute
-    {
-        public int Order { get; set; }
-
-
-        public OrderedTestAttribute(int order)
-        {
-            Order = order;
-        }
-    }
-
-    public class TestStructure
-    {
-        public Action Test;
-    }
-
-    class Int
-    {
-        public int I;
-    }
 }
