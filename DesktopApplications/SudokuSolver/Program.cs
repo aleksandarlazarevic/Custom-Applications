@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SudokuSolver
 {
@@ -38,13 +40,178 @@ namespace SudokuSolver
             Utilities.PrintCurrentSudoku(selectedSudoku);
 
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            Solve(selectedSudoku);
+            //Solve(selectedSudoku);
+            SolveWithCache(selectedSudoku, CacheValidValues(selectedSudoku));
+
             watch.Stop();
             Console.WriteLine($"Execution Time: {watch.Elapsed}");
 
             Console.WriteLine("Solved:");
             Utilities.PrintCurrentSudoku(selectedSudoku);
         }
+
+        private static List<int> PossibleValues(int[,] sudoku, int row, int column)
+        {
+            List<int> numbersList = new List<int>();
+            bool found = false;
+            foreach (int number in Enumerable.Range(1, 10))
+            {
+                // Check if all row elements include this number
+                foreach (int j in Enumerable.Range(0, 8))
+                {
+                    if (sudoku[row, j] == number)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                // Check if all column elements include this number
+                if (found == true)
+                {
+                    continue;
+                }
+                else
+                {
+                    foreach (int i in Enumerable.Range(0, 8))
+                    {
+                        if (sudoku[i, column] == number)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                // Check if the number is already included in the block
+                if (found == true)
+                {
+                    continue;
+                }
+                else
+                {
+                    int rowBlockStart = (int)((double)row/3)*3;
+                    int colBlockStart = (int)((double)column/3)*3;
+                    int rowBlockEnd;
+                    int colBlockEnd;
+                    if (row == 0)
+                    {
+                        rowBlockEnd = rowBlockStart + 2;
+                    }
+                    else
+                    {
+                        rowBlockEnd = rowBlockStart + 3;
+                    }
+
+                    if (column == 0)
+                    {
+                        colBlockEnd = colBlockStart + 2;
+                    }
+                    else
+                    {
+                        colBlockEnd = colBlockStart + 3;
+                    }
+
+                    foreach (int i in Enumerable.Range(rowBlockStart, rowBlockEnd - rowBlockStart))
+                    {
+                        var yy = Enumerable.Range(colBlockStart, colBlockEnd - colBlockStart);
+                        foreach (int j in Enumerable.Range(colBlockStart, colBlockEnd - colBlockStart))
+                        {
+                            if (sudoku[i, j] == number)
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (found == false)
+                {
+                    numbersList.Append(number);
+                }
+            }
+
+            return numbersList;
+        }
+
+        // Store in a dictionary the legitimate values for each individual cell
+        private static Dictionary<int[,], List<int>> CacheValidValues(int[,] sudoku)
+        {
+            Dictionary<int[,], List<int>> cache = new Dictionary<int[,], List<int>>();
+            foreach (int i in Enumerable.Range(0, 8))
+            {
+                foreach (int j in Enumerable.Range(0, 8))
+                {
+                    if (sudoku[i, j] == 0)
+                    {
+                        cache.Add(new int[i, j], PossibleValues(sudoku, i, j));
+                    }
+                }
+            }
+
+            return cache;
+        }
+
+        // Return coordinates of an empty cell **
+        private static List<int> FindEmptyCell(int[,] sudoku)
+        {
+            List<int> cellCoordinates = new List<int>();
+
+            foreach (int row in Enumerable.Range(1, 9))
+            {
+                foreach (int column in Enumerable.Range(1, 9))
+                {
+                    if (sudoku[row, column] == 0)
+                    {
+                        cellCoordinates.Add(row);
+                        cellCoordinates.Add(column);
+
+                        return cellCoordinates;
+                    }
+                }
+            }
+
+            return cellCoordinates;
+        }
+
+
+        private static bool SolveWithCache(int[,] sudoku, Dictionary<int[,], List<int>> cache)
+        {
+            List<int> values = new List<int>();
+            List<int> emptyCellCoordinates = FindEmptyCell(sudoku);
+
+            if (emptyCellCoordinates.Count.Equals(0))
+            {
+                return true;
+            }
+            else
+            {
+                int [,] indexArray = new int[emptyCellCoordinates[0], emptyCellCoordinates[1]];
+                //values = cache[indexArray[0], indexArray[1]];
+            }
+
+            foreach (var value in values)
+            {
+                int row = emptyCellCoordinates[0];
+                int column = emptyCellCoordinates[1];
+
+                if (IsNumberAPossibleSolution(sudoku, row, column, value))
+                {
+                    sudoku[row, column] = value;
+
+                    if (SolveWithCache(sudoku, cache))
+                    {
+                        return true;
+                    }
+
+                    sudoku[row, column] = 0;
+                }
+            }
+
+            return false;
+        }
+
+
 
         // sudoku1 resolution time: ~ 00.0006826
         // sudoku2 resolution time: ~ 00.0121960
