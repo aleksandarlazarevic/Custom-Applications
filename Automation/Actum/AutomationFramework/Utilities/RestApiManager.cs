@@ -7,15 +7,15 @@ namespace Utilities
     public class RestApiManager
     {
         #region Fields and Properties
-        static string _serviceUrl = SeleniumCore.Helpers.Utilities.EnvironmentVariable.GetEnvironmentVariable("api_url", "https://restful-booker.herokuapp.com");
-        static string _token = "";
+        static string _serviceUrl = SeleniumCore.Helpers.Utilities.EnvironmentVariable.GetEnvironmentVariable("api_url", "https://restful-booker.herokuapp.com/");
+        static string _token = "c4bb823b5c3375a";
         #endregion
         #region Methods
         public static RestResponse GetData(string endpoint)
         {
             RestClient client = new RestClient(_serviceUrl);
-            client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Environment.GetEnvironmentVariable("apiToken"), _token);
             RestRequest request = new RestRequest(_serviceUrl + endpoint, Method.Get);
+
             RestResponse response = new RestResponse();
 
             try
@@ -69,8 +69,8 @@ namespace Utilities
         public static RestResponse PostData(string endpoint, string body)
         {
             RestClient client = new RestClient(_serviceUrl);
-            client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Environment.GetEnvironmentVariable("apiToken"), _token);
             RestRequest request = new RestRequest(_serviceUrl + endpoint, Method.Post);
+            request.AddHeader("authorization", "Bearer " + _token);
             request.AddJsonBody(body);
             RestResponse response = new RestResponse();
             request.RequestFormat = DataFormat.Json;
@@ -99,8 +99,8 @@ namespace Utilities
         public static RestResponse PostData(string endpoint)
         {
             RestClient client = new RestClient(_serviceUrl);
-            client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Environment.GetEnvironmentVariable("apiToken"), _token);
             RestRequest request = new RestRequest(_serviceUrl + endpoint, Method.Post);
+            request.AddHeader("authorization", "Bearer " + _token);
             RestResponse response = new RestResponse();
             request.RequestFormat = DataFormat.Json;
 
@@ -128,9 +128,9 @@ namespace Utilities
         public static RestResponse PutData(string endpoint, string id, object booking)
         {
             RestClient client = new RestClient(_serviceUrl);
-            client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Environment.GetEnvironmentVariable("apiToken"), _token);
             RestRequest request = new RestRequest(_serviceUrl + endpoint + id, Method.Put);
             RestResponse response = new RestResponse();
+            request.AddHeader("authorization", "Bearer " + _token);
             request.RequestFormat = DataFormat.Json;
             request.AddJsonBody(booking);
             
@@ -158,9 +158,9 @@ namespace Utilities
         public static RestResponse PatchData(string endpoint, string id, object booking)
         {
             RestClient client = new RestClient(_serviceUrl);
-            client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Environment.GetEnvironmentVariable("apiToken"), _token);
             RestRequest request = new RestRequest(_serviceUrl + endpoint + id, Method.Patch);
             RestResponse response = new RestResponse();
+            request.AddHeader("authorization", "Bearer " + _token);
             request.RequestFormat = DataFormat.Json;
             request.AddJsonBody(booking);
 
@@ -188,8 +188,8 @@ namespace Utilities
         public static RestResponse DeleteData(string endpoint, string id)
         {
             RestClient client = new RestClient(_serviceUrl);
-            client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(Environment.GetEnvironmentVariable("apiToken"), _token);
             RestRequest request = new RestRequest(_serviceUrl + endpoint + id, Method.Delete);
+            request.AddHeader("authorization", "Bearer " + _token);
             RestResponse response = new RestResponse();
 
             try
