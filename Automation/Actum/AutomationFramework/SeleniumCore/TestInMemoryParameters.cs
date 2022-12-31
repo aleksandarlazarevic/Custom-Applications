@@ -16,7 +16,7 @@ namespace SeleniumCore
         TestInMemoryParameters()
         {
             MultipleBrowserInstances = false;
-            WebDriver = EnvironmentVariable.GetEnvironmentVariable("browser", "Edge");
+            WebDriver = EnvironmentVariable.GetEnvironmentVariable("browser", "Chrome");
         }
 
         public static TestInMemoryParameters Instance

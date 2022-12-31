@@ -1,6 +1,4 @@
 ﻿using RestSharp;
-using System;
-using RestSharp.Authenticators.OAuth2;
 
 namespace Utilities
 {

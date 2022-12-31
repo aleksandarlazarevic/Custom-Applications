@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SeleniumCore.Contracts.Drivers;
 using SeleniumCore.Handlers;
 using SeleniumCore.WebDriver;
-using System;
 
 namespace SeleniumCore.Base
 {
-    [SetUpFixture]
     public abstract class BaseTest
     {
         #region Fields and Properties 
@@ -16,14 +14,14 @@ namespace SeleniumCore.Base
         #endregion
 
         #region Methods 
-        [SetUp]
+        [TestInitialize]
         public void TestInitialize(TestContext testContext)
         {
             SetTestContext(testContext);
             InitializeTestParameters();
         }
 
-        [TearDown]
+        [TestCleanup]
         public void TestCleanUp()
         {
             // Close web browser

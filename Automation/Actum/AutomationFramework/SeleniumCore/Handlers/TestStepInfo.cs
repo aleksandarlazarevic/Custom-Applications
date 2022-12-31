@@ -1,6 +1,5 @@
 ﻿using SeleniumCore.Contracts.Drivers;
 using SeleniumCore.Enums;
-using System;
 
 namespace SeleniumCore.Handlers
 {

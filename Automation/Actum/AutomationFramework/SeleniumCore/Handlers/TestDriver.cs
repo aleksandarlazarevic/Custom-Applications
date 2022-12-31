@@ -1,7 +1,7 @@
 ﻿using SeleniumCore.Enums;
 using SeleniumCore.WebDriver;
 using SeleniumCore.Contracts.Drivers;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumCore.Handlers
 {
@@ -15,6 +15,7 @@ namespace SeleniumCore.Handlers
         public static TestDriver Instance { get; private set; }
         public TestContext TestContext { get; set; }
         public string TestIdentifier { get; set; }
+        public string TestDescription { get; set; }
         public TestStatus Status { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
@@ -26,7 +27,9 @@ namespace SeleniumCore.Handlers
         private TestDriver(TestContext testContext)
         {
             TestContext = testContext;
-            TestIdentifier = testContext.Test.ToString();
+
+            TestIdentifier = testContext.TestName;
+            TestDescription = testContext.FullyQualifiedTestClassName;
             Status = TestStatus.Ready;
         }
 

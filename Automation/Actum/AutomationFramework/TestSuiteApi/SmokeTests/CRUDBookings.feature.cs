@@ -19,20 +19,33 @@ namespace TestSuiteApi.SmokeTests
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("CRUDBookings")]
+    [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
     public partial class CRUDBookingsFeature
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
         private static string[] featureTags = ((string[])(null));
         
 #line 1 "CRUDBookings.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
+        {
+            get
+            {
+                return this._testContext;
+            }
+            set
+            {
+                this._testContext = value;
+            }
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
+        public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SmokeTests", "CRUDBookings", "Creates a new booking in the API\r\nUpdates a current booking\r\nUpdates a current bo" +
@@ -42,19 +55,24 @@ namespace TestSuiteApi.SmokeTests
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute()]
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute()]
         public void TestInitialize()
         {
+            if (((testRunner.FeatureContext != null) 
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "CRUDBookings")))
+            {
+                global::TestSuiteApi.SmokeTests.CRUDBookingsFeature.FeatureSetup(null);
+            }
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute()]
         public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -63,7 +81,7 @@ namespace TestSuiteApi.SmokeTests
         public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Microsoft.VisualStudio.TestTools.UnitTesting.TestContext>(_testContext);
         }
         
         public void ScenarioStart()
@@ -76,11 +94,7 @@ namespace TestSuiteApi.SmokeTests
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a booking")]
-        [NUnit.Framework.CategoryAttribute("smoke")]
-        [NUnit.Framework.TestCaseAttribute("Jim", "Brown", "111", "true", "2018-01-01", "2019-01-01", "Breakfast", null)]
-        public void CreateABooking(string firstname, string lastname, string totalprice, string depositpaid, string checkin, string checkout, string additionalneeds, string[] exampleTags)
+        public virtual void CreateABooking(string firstname, string lastname, string totalprice, string depositpaid, string checkin, string checkout, string additionalneeds, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smoke"};
@@ -118,11 +132,26 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Update a booking")]
-        [NUnit.Framework.CategoryAttribute("smoke")]
-        [NUnit.Framework.TestCaseAttribute("1", "Jim", "Brown", "111", "true", "2018-01-01", "2019-01-01", "Breakfast", null)]
-        public void UpdateABooking(string id, string firstname, string lastname, string totalprice, string depositpaid, string checkin, string checkout, string additionalneeds, string[] exampleTags)
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Create a booking: Jim")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUDBookings")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Jim")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:firstname", "Jim")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:lastname", "Brown")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:totalprice", "111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:depositpaid", "true")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:checkin", "2018-01-01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:checkout", "2019-01-01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:additionalneeds", "Breakfast")]
+        public void CreateABooking_Jim()
+        {
+#line 8
+this.CreateABooking("Jim", "Brown", "111", "true", "2018-01-01", "2019-01-01", "Breakfast", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void UpdateABooking(string id, string firstname, string lastname, string totalprice, string depositpaid, string checkin, string checkout, string additionalneeds, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smoke"};
@@ -161,11 +190,27 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Partial update a booking")]
-        [NUnit.Framework.CategoryAttribute("smoke")]
-        [NUnit.Framework.TestCaseAttribute("1", "Jim", "Brown", null)]
-        public void PartialUpdateABooking(string id, string firstname, string lastname, string[] exampleTags)
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update a booking: 1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUDBookings")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:id", "1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:firstname", "Jim")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:lastname", "Brown")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:totalprice", "111")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:depositpaid", "true")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:checkin", "2018-01-01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:checkout", "2019-01-01")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:additionalneeds", "Breakfast")]
+        public void UpdateABooking_1()
+        {
+#line 16
+this.UpdateABooking("1", "Jim", "Brown", "111", "true", "2018-01-01", "2019-01-01", "Breakfast", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void PartialUpdateABooking(string id, string firstname, string lastname, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smoke"};
@@ -199,11 +244,22 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Delete a booking")]
-        [NUnit.Framework.CategoryAttribute("smoke")]
-        [NUnit.Framework.TestCaseAttribute("First booking", "1", null)]
-        public void DeleteABooking(string exampleDescription, string id, string[] exampleTags)
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Partial update a booking: 1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUDBookings")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:id", "1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:firstname", "Jim")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:lastname", "Brown")]
+        public void PartialUpdateABooking_1()
+        {
+#line 24
+this.PartialUpdateABooking("1", "Jim", "Brown", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void DeleteABooking(string exampleDescription, string id, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "smoke"};
@@ -234,6 +290,20 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Delete a booking: First booking")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "CRUDBookings")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "First booking")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:example description", "First booking")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Id", "1")]
+        public void DeleteABooking_FirstBooking()
+        {
+#line 32
+this.DeleteABooking("First booking", "1", ((string[])(null)));
+#line hidden
         }
     }
 }

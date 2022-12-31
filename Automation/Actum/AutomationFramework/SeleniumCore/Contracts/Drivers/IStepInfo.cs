@@ -1,5 +1,4 @@
-﻿using System;
-using SeleniumCore.Enums;
+﻿using SeleniumCore.Enums;
 
 namespace SeleniumCore.Contracts.Drivers
 {

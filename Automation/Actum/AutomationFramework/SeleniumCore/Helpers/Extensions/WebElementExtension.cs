@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -9,7 +6,6 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumCore.WebDriver;
 using SeleniumCore.Helpers.Utilities;
 using NUnit.Framework;
-using System.Windows;
 
 namespace SeleniumCore.Helpers.Extensions
 {

@@ -1,5 +1,4 @@
-﻿using System;
-namespace SeleniumCore.Helpers.Utilities
+﻿namespace SeleniumCore.Helpers.Utilities
 {
     public static class EnvironmentVariable
     {

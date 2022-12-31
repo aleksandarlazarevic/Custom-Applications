@@ -15,7 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.csproj" />
+    <ProjectReference Include="..\CommonTestSteps\CommonTestSteps.csproj" />
+    <ProjectReference Include="..\SeleniumCore\SeleniumCore.csproj" />
+    <ProjectReference Include="..\UIMappings\UIMappings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SmokeTests\" />
   </ItemGroup>
 
 </Project>
