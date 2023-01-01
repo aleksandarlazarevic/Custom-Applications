@@ -12,6 +12,9 @@ namespace UIMappings.Pages
         [FindsBy(How = How.XPath, Using = "//a[@id='login2']")]
         public IWebElement LogInLink { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//a[@id='signin2']")]
+        public IWebElement SignUpLink { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//input[@id='loginusername']")]
         public IWebElement UsernameTextbox { get; set; }
 
@@ -20,6 +23,9 @@ namespace UIMappings.Pages
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Log in')]")]
         public IWebElement LogInButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Sign up')]")]
+        public IWebElement SignUpButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[contains(text(), 'Close')]")]
         public IWebElement CloseButton { get; set; }
@@ -32,6 +38,12 @@ namespace UIMappings.Pages
         public DemoblazeLogin ClickOnLogInLink()
         {
             LogInLink.ClickWrapper("LogInLink");
+            return this;
+        }
+
+        public DemoblazeLogin ClickOnSignUpLink()
+        {
+            SignUpLink.ClickWrapper("SignUpLink");
             return this;
         }
 
@@ -57,6 +69,12 @@ namespace UIMappings.Pages
             return this;
         }
 
+        public DemoblazeLogin ClickOnSignUp()
+        {
+            SignUpButton.ClickWrapper("SignUp");
+            return this;
+        }
+
         public DemoblazeLogin ClickOnCloseLogIn()
         {
             CloseButton.ClickWrapper("CloseButton");
@@ -76,7 +94,7 @@ namespace UIMappings.Pages
         {
             return WelcomeUserLink.Text.Contains(username);
         }
-        
+
         #endregion
     }
 }

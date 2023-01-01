@@ -72,6 +72,11 @@ namespace SeleniumCore.Base
             TestDriver.Instance.RunStep(action, parameter1, parameter2, stepInfo);
         }
 
+        public void RunStep<T1, T2, T3>(Action<T1, T2, T3> action, T1 parameter1, T2 parameter2, T3 parameter3, IStepInfo stepInfo)
+        {
+            TestDriver.Instance.RunStep(action, parameter1, parameter2, parameter3, stepInfo);
+        }
+
         public static T GetPage<T>() where T : BasePage
         {
             return UIDriver.WebDriver.GetPage<T>();

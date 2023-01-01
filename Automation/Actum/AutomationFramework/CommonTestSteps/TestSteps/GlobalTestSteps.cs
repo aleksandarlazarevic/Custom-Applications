@@ -1,6 +1,7 @@
 ﻿using CommonTestSteps.Contracts;
 using OpenQA.Selenium;
 using SeleniumCore;
+using SeleniumCore.Base;
 using SeleniumCore.Enums;
 using SeleniumCore.Helpers.Utilities;
 using SeleniumCore.WebDriver;
@@ -8,7 +9,7 @@ using ServiceStack.Host;
 
 namespace CommonTestSteps.TestSteps
 {
-    public class GlobalTestSteps : IGlobalTestSteps
+    public class GlobalTestSteps : BaseTest, IGlobalTestSteps
     {
         public void CloseBrowser()
         {

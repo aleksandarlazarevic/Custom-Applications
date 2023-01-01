@@ -142,6 +142,28 @@ namespace SeleniumCore.Handlers
             return stepInfo.Status;
         }
 
+        public TestStatus RunStep<T1, T2, T3>(Action<T1, T2, T3> action, T1 parameter1, T2 parameter2, T3 parameter3, IStepInfo stepInfo)
+        {
+            try
+            {
+                if (!ShouldTheStepBeExecuted(stepInfo))
+                {
+                    action(parameter1, parameter2, parameter3);
+                    stepInfo.Status = TestStatus.Passed;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex, stepInfo);
+            }
+            finally
+            {
+                FinalizeStep(stepInfo);
+            }
+
+            return stepInfo.Status;
+        }
+
         public static void Initialize(TestContext testContext)
         {
             if (Instance == null)

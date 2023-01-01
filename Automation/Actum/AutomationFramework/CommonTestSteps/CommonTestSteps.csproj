@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SeleniumCore\SeleniumCore.csproj" />
+    <ProjectReference Include="..\UIMappings\UIMappings.csproj" />
   </ItemGroup>
 
 </Project>
