@@ -5,7 +5,7 @@ Sign up tests
 @smoke
 Scenario: Sign up new account
 	Given The website <Website> is started
-	When Sign up new account <User>, <Password>
+	When Sign up new account <Website>, <User>, <Password>
 Examples:
 	| Website   | User      | Password      |
 	| demoblaze | LonyBunny | LonyBunny123! |

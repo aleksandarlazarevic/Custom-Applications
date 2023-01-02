@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given(string.Format("The website {0} is started", website), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When(string.Format("Sign up new account {0}, {1}", user, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("Sign up new account {0}, {1}, {2}", website, user, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
