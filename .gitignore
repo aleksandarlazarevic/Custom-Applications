@@ -3,3 +3,5 @@ bin/
 obj/
 .suo
 .suo
+/Automation/Bosch/TestAutomation/.idea/
+/Automation/Bosch/TestAutomation/target/

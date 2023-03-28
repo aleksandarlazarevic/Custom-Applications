@@ -11,10 +11,10 @@ public class LoginErrorScreen extends BaseScreen {
     public MobileElement ErrorMessage = Helpers.getScreenElement(By.xpath("//android.widget.TextView[@text='Login error']"));
     public MobileElement SettingsMenu = Helpers.getScreenElement(By.xpath("//*[(@class='android.widget.ImageView')]"));
 
-    public LoginErrorScreen clickBackArrow()
+    public LoginScreen clickBackArrow()
     {
         BackArrow.click();
-        return getInstance(LoginErrorScreen.class);
+        return getInstance(LoginScreen.class);
     }
 
     public boolean isErrorMessageDisplayed()

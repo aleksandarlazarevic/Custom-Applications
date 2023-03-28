@@ -28,10 +28,9 @@ public class LoginScreen extends BaseScreen {
         return getInstance(LoginScreen.class);
     }
 
-    public LoginScreen clickLoginButton()
+    public void clickLoginButton()
     {
         LoginButton.click();
-        return getInstance(LoginScreen.class);
     }
 
     public boolean isLoginScreenDisplayed()

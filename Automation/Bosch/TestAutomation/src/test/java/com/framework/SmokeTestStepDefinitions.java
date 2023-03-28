@@ -47,12 +47,12 @@ public class SmokeTestStepDefinitions {
     public void loginErrorMessageIsDisplayed() {
         ScreenFactory.getInstance().CurrentPage = ScreenHelpers.getScreen("LoginErrorScreen");
         assertTrue(ScreenFactory.getInstance().CurrentPage.As(LoginErrorScreen.class).isErrorMessageDisplayed(), "Incorrect error message");
-
     }
 
     @And("Return to the Login screen")
     public void returnToTheLoginScreen() {
         ScreenFactory.getInstance().CurrentPage.As(LoginErrorScreen.class).clickBackArrow();
+        ScreenFactory.getInstance().CurrentPage = ScreenHelpers.getScreen("LoginScreen");
     }
 
     @When("Find the charging station on the map")

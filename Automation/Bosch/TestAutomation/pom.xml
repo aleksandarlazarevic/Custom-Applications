@@ -69,20 +69,5 @@
             <version>3.141.59</version>
         </dependency>
 
-        <!--        &lt;!&ndash;Extent Report&ndash;&gt;-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/tech.grasshopper/cucumber-extent-generator &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>tech.grasshopper</groupId>-->
-<!--            <artifactId>cucumber-extent-generator</artifactId>-->
-<!--            <version>1.0.2</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/tech.grasshopper/extent-pdf-report &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>tech.grasshopper</groupId>-->
-<!--            <artifactId>extent-pdf-report</artifactId>-->
-<!--            <version>2.10.0</version>-->
-<!--        </dependency>-->
-
     </dependencies>
 </project>
