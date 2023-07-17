@@ -1,0 +1,28 @@
+{
+  "Configurations": [
+    {
+      "Tag": "Appiumdriver",
+      "Capabilities": [
+        {
+          "Name": "Appiumdriver",
+          "BaseUrl": "http://127.0.0.1:4723/wd/hub",
+          "ApplicationPath": "C:\\Automation\\Mobile\\app\\SampleApp.apk",
+          "CommandTimeOutInMinutes": 5,
+          "DeviceName": "emulator-5554",
+          "PlatformName": "Android"
+
+        },
+        {
+          "Name": "IOSDriver",
+          "BaseUrl": "http://127.0.0.1:4723/wd/hub",
+          "ApplicationPath": "C:\\Automation\\Mobile\\app\\SampleApp.apk",
+          "CommandTimeOutInMinutes": 5,
+          "DeviceName": "iPhone 8",
+          "PlatformName": "iOS",
+          "PlatformVersion": "15.2"
+        }
+      ]
+    }
+  ],
+  "TestResultPath": "\\Automation\\Mobile\\TestResults\\"
+}

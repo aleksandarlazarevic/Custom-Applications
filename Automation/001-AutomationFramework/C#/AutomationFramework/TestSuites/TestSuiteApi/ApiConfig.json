@@ -1,0 +1,15 @@
+{
+  "Configurations": [
+    {
+      "Tag": "API",
+      "Capabilities": [
+        {
+          "Name": "API",
+          "BaseUrl": "https://admin.googleapis.com/admin/directory/v1/users",
+          "Timeout": 5000
+        }
+      ]
+    }
+  ],
+  "TestResultPath": "\\Automation\\API\\TestResults\\"
+}

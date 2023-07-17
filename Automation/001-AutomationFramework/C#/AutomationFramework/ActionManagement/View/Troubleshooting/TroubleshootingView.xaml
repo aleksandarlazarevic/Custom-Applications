@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ActionManagement.View.Troubleshooting.TroubleshootingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ActionManagement.View.Troubleshooting"
+             mc:Ignorable="d" Background="{StaticResource RightPaneBackground}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Style x:Key="HeaderStyle" TargetType="DataGrid">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource HeaderColumnStyle}"></Setter>
+        </Style>
+        <Style x:Key="HeaderColumnStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Background" Value="{StaticResource LeftPaneBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource CommonForeground}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0.5,0,0.5,0"/>
+            <Setter Property="BorderBrush" Value="LightBlue"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+            
+    </Grid>
+</UserControl>

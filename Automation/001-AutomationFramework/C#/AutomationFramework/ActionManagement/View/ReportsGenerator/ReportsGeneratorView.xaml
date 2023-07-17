@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="ActionManagement.View.ReportsGenerator.ReportsGeneratorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ActionManagement.View.ReportsGenerator"
+             mc:Ignorable="d" Background="{StaticResource RightPaneBackground}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Style x:Key="HeaderStyle" TargetType="DataGrid">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource HeaderColumnStyle}"></Setter>
+        </Style>
+        <Style x:Key="UserControlStyle" TargetType="UserControl">
+            <Setter Property="Background" Value="{DynamicResource AMBrightBlue}"></Setter>
+        </Style>
+        <Style x:Key="HeaderColumnStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Background" Value="{StaticResource LeftPaneBackground}" />
+            <Setter Property="Foreground" Value="{StaticResource CommonForeground}" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0.5,0,0.5,0"/>
+            <Setter Property="BorderBrush" Value="LightBlue"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel Margin="25,29,29,0" Height="220" Width="auto" Grid.Row="0">
+            <StackPanel DockPanel.Dock="Left">
+                <TextBlock x:Name="ViewNameLabel" FontSize="25" FontWeight="Bold" Foreground="{StaticResource CommonForeground}" 
+                      VerticalAlignment="Center" HorizontalAlignment="Left">Reports Generator</TextBlock>
+                <ComboBox x:Name="ChooseConfigDropbox" Margin="0 25 0 15" MinWidth="200px" 
+                          VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                          ItemsSource="{Binding ConfigurationNames}"
+                          SelectedItem="{Binding SelectedConfiguration}" 
+                          Style="{StaticResource DropdownMenu}" Foreground="{StaticResource CommonForeground}"/>
+                <Label x:Name="label" Content="Selected report Configuration:" Foreground="{StaticResource CommonForeground}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Label Content="{Binding SelectedBenchmark}" Foreground="{StaticResource CommonForeground}" 
+                       HorizontalAlignment="Center" MinWidth="400" Width="auto"/>
+                <DatePicker x:Name="ReportEndDate" SelectedDate="{Binding ReportEndDate}"/>
+
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0,8,0,20" VerticalAlignment="Center">
+                    <Button x:Name="BrowseReportConfigsButton" Content="Browse Report Input" 
+                        Width="160" Height="40" Margin="80,0,0,0"
+                        Command="{Binding BrowseCsvReportCommand}"/>
+                    <Button x:Name="ExportReportConfigsButton" Content="Export Report Configs" 
+                        Width="160" Height="40" Margin="80,0,0,0"
+                        Command="{Binding ExportCommand}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Right" Orientation="Vertical" HorizontalAlignment="Right" Width="auto" MinWidth="150">
+                <Image Source="pack://application:,,,../../Resources/img/shieldOK.png" Stretch="None"/>
+            </StackPanel>
+        </DockPanel>
+        <!--Log pane-->
+        <!--<Grid DataContext="{DynamicResource WorkoutToDisplay}">
+            <Calendar SelectedDate="{Binding WorkoutDate}" Height="180" HorizontalAlignment="Left" Margin="8,12,0,0" Name="calendar1" VerticalAlignment="Top" Width="230" />
+            <StackPanel Height="94" HorizontalAlignment="Left" Margin="12,182,0,0" Name="spProperties" VerticalAlignment="Top" Width="238">
+                <StackPanel Height="30" Name="spProgram" Width="232" Orientation="Horizontal">
+                    <Label Content="Workout Program:" Height="25" Name="lblProgram" Width="104" />
+                    <TextBox Text="{Binding WorkoutProgram}" Height="25" Name="tbProgram" Width="120" />
+                </StackPanel>
+                <StackPanel Height="30" Name="spType" Width="232" Orientation="Horizontal">
+                    <Label Content="Workout Type:" Height="25" Name="lblWorkoutType" Width="104" />
+                    <TextBox Text="{Binding WorkoutType}" Height="25" Name="tbWorkoutType" Width="120" />
+                </StackPanel>
+                <StackPanel Height="30" Name="spVenue" Width="232" Orientation="Horizontal">
+                    <Label Content="Workout Venue:" Height="25" Name="lblVenue" Width="104" />
+                    <TextBox Text="{Binding WorkoutVenue}" Height="25" Name="tbVenue" Width="120" />
+                </StackPanel>
+            </StackPanel>
+
+            <TabControl Height="365" HorizontalAlignment="Left" Margin="260,10,0,0" Name="TCWorkoutView" VerticalAlignment="Top" Width="425">
+                <TabItem Header="Workout View" Name="TIView">
+                    <StackPanel Height="335" HorizontalAlignment="Left" Name="spExercises" VerticalAlignment="Top" Width="410" Grid.ColumnSpan="2">
+                        <ItemsControl ItemsSource="{Binding Exercises}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Header="{Binding ExerciseName}" BorderThickness="1" BorderBrush="DarkBlue">
+                                        <ItemsControl ItemsSource="{Binding Sets}" DisplayMemberPath="WeightForReps" BorderThickness="1" BorderBrush="Gray"/>
+                                    </Expander>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </TabItem>
+                -->
+        <!--The below section is the one in question-->
+        <!--
+                <TabItem Header="Edit Workout">
+                    <TabControl ItemsSource="{Binding Path=Exercises}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DataGrid ItemsSource="{Binding Path=Sets}" AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Weight" Binding="{Binding Path=Weight}"/>
+                                        <DataGridTextColumn Header="Reps" Binding="{Binding Path=Reps}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </TabControl>
+                </TabItem>
+            </TabControl>
+            -->
+        <!--<TabControl ItemsSource="{Binding Path=Exercises}" DisplayMemberPath="ExerciseName">
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <DataGrid ItemsSource="{Binding Path=Sets}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Weight" Binding="{Binding Path=Weight}"/>
+                                <DataGridTextColumn Header="Reps" Binding="{Binding Path=Reps}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>-->
+        <!--
+        </Grid>-->
+
+
+
+
+        <!--<DataGrid Grid.Row="2" x:Name="ReportOutputWindow" IsReadOnly="True" Margin="0, 10, 10, 0"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  Panel.ZIndex="1" HeadersVisibility="Column" RowHeaderWidth="0"  
+                  Foreground="white" RowBackground="{StaticResource MenuButtonPressedBackground}" Background="{StaticResource MenuButtonPressedBackground}"
+                  ItemsSource="{Binding ExportResults, NotifyOnSourceUpdated=True}"                        
+                  AutoGenerateColumns="False" CanUserResizeColumns="True"
+                  CanUserAddRows="False" CanUserSortColumns="True" Style="{DynamicResource HeaderStyle}">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource CommonForeground}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" SortDirection="Ascending" CanUserSort="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                            <Setter Property="TextBlock.Margin" Value="5,0,0,0"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Fix text" Binding="{Binding FixText}" Width="2*" SortDirection="Ascending" CanUserSort="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+                            <Setter Property="TextBlock.Margin" Value="5,0,0,0"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>-->
+    </Grid>
+</UserControl>

@@ -1,0 +1,16 @@
+{
+  "Configurations": [
+    {
+      "Tag": "WebDriver",
+      "Capabilities": [
+        {
+          "Name": "WebDriver",
+          "DriverPath": "..SeleniumCore\\BrowserDrivers",
+          "DriverType": "Chrome",
+          "CommandTimeOutInMinutes": 5
+        }
+      ]
+    }
+  ],
+  "TestResultPath": "\\Automation\\Web\\TestResults\\"
+}
