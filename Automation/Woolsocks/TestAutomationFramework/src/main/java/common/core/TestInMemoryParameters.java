@@ -32,5 +32,12 @@ public class TestInMemoryParameters {
         this.pageLoadTimeout = "60";
     }
 
+    public String getTestResultsDirectory() {
+        return this.testResultsDirectory;
+    }
+
+    public void setTestResultsDirectory(String testResultsDirectory) {
+        this.testResultsDirectory = testResultsDirectory;
+    }
     // endregion
 }

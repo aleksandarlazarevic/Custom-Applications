@@ -1,6 +1,7 @@
 package engines.extensions;
 
 import common.core.TestInMemoryParameters;
+import common.utilities.LoggingManager;
 import engines.helpers.JavaScriptHelper;
 import manifold.ext.rt.api.Extension;
 import manifold.ext.rt.api.This;
@@ -25,7 +26,7 @@ public class WebElementExtensions {
     // region Waits
     public static void waitToBeClickable(@This WebElement element, String elementName, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(TestInMemoryParameters.getInstance().driver, duration.ofSeconds(timeoutInSeconds));
-
+        LoggingManager.Info("Waiting for element to appear: " + elementName);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
@@ -113,7 +114,7 @@ public class WebElementExtensions {
             wait.until(ExpectedConditions.elementToBeClickable(element));
             return true;
         } catch (Exception exception) {
-
+            LoggingManager.Info("The element is not clickable: " + exception.getMessage());
             return false;
         }
     }
@@ -127,7 +128,7 @@ public class WebElementExtensions {
                 return element != null && element.isDisplayed();
             });
         } catch (Exception exception) {
-
+            LoggingManager.Info("The element is not displayed: " + exception.getMessage());
             return false;
         }
     }
@@ -149,7 +150,8 @@ public class WebElementExtensions {
 
             return result;
         } catch (Exception exception) {
-
+            LoggingManager.Info(String.format("The element is not displayed: {0} - exception: {1}",
+                    elementName, exception.getMessage()));
             return false;
         }
     }
@@ -163,7 +165,8 @@ public class WebElementExtensions {
                 return element != null && element.isEnabled();
             });
         } catch (Exception exception) {
-
+            LoggingManager.Info(String.format("The element: {0} is not enabled: ",
+                    elementName, exception.getMessage()));
             return false;
         }
     }
@@ -175,7 +178,7 @@ public class WebElementExtensions {
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
             return true;
         } catch (Exception exception) {
-
+            LoggingManager.Info("The element does not exist: " + exception.getMessage());
             return false;
         }
     }
@@ -188,7 +191,8 @@ public class WebElementExtensions {
                 result = true;
             }
         } catch (Exception exception) {
-
+            LoggingManager.Info(String.format("Unable to locate element attribute: {0} - exception: {1}",
+                    attribute, exception.getMessage()));
             result = false;
         }
 
@@ -203,7 +207,8 @@ public class WebElementExtensions {
             JavaScriptHelper.highlightElement(TestInMemoryParameters.getInstance().driver, element);
             builder.moveToElement(element).moveByOffset(x, y).click().build().perform();
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed clicking element: {0} with coordinates: {1}:{2} - exception: {3}",
+                    elementName, x, y, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -243,7 +248,8 @@ public class WebElementExtensions {
                 }
             }
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed to select value: {0} from: {1} - exception: ",
+                    value, elementName, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -265,7 +271,8 @@ public class WebElementExtensions {
                 dropdown.selectByIndex(index);
             }
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed to select dropdown value by index: {0} - exception: {1}",
+                    elementName, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -277,7 +284,8 @@ public class WebElementExtensions {
             String value = selectedValue.getFirstSelectedOption().getText().trim();
             return value;
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed to get selected dropdown value for: {0} - exception: {1}",
+                    elementName, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -310,7 +318,7 @@ public class WebElementExtensions {
 
             return value;
         } catch (Exception exception) {
-
+            LoggingManager.Error("Unable to get element value: " + exception.getMessage());
             throw new RuntimeException(exception);
         }
     }
@@ -340,7 +348,7 @@ public class WebElementExtensions {
                 throw new Exception("Unsupported input control");
             }
         } catch (Exception exception) {
-
+            LoggingManager.Error("Unable to set the element's: " + elementName + " value: " + exception.getMessage());
             throw new RuntimeException(exception);
         }
     }
@@ -375,7 +383,8 @@ public class WebElementExtensions {
                 isClicked = true;
             } catch (Exception exception) {
                 if (retry == maxRetry) {
-
+                    LoggingManager.Error(String.format("Failed to click element: {0} - exception: {1}",
+                            elementName, exception.getMessage()));
                     throw new RuntimeException(exception);
                 }
 
@@ -386,7 +395,7 @@ public class WebElementExtensions {
 
     public static void sendKeysEx(@This WebElement element, String value, String elementName, boolean useJavaScript, boolean validateElementValue) {
         try {
-
+            LoggingManager.Info("Filling element: " + elementName + " with data: " + value.toString());
             waitToBeClickable(element, elementName, 15);
 
             if (useJavaScript) {
@@ -400,7 +409,8 @@ public class WebElementExtensions {
                 Assertions.assertEquals(value, element.getAttribute("value"), String.format("Failed setting value to: {0}", elementName));
             }
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed filling element: {0} with data: {1} - exception {2}",
+                    elementName, value.toString(), exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -451,7 +461,8 @@ public class WebElementExtensions {
                 JavaScriptHelper.highlightElement(TestInMemoryParameters.getInstance().driver, checkbox);
             }
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed to tick checkbox: {0} - exception: {1}",
+                    elementName, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -460,7 +471,8 @@ public class WebElementExtensions {
         try {
             TestInMemoryParameters.getInstance().driver.navigate().to(url);
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed to navigate to URL: {0} - exception: {1}",
+                    url, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
@@ -474,7 +486,8 @@ public class WebElementExtensions {
             JavaScriptHelper.highlightElement(TestInMemoryParameters.getInstance().driver, element);
             builder.moveToElement(element).click().perform();
         } catch (Exception exception) {
-
+            LoggingManager.Error(String.format("Failed to click element: {0} - exception: {1}",
+                    elementName, exception.getMessage()));
             throw new RuntimeException(exception);
         }
     }
