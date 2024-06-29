@@ -5,3 +5,4 @@ obj/
 .suo
 *target/
 *.idea/
+Automation/Woolsocks/TestAutomationFramework/*.log

@@ -1,5 +1,6 @@
 package engines.selenium.base;
 
+import common.core.TestInMemoryParameters;
 import engines.selenium.driverInitialization.WebDriverFactory;
 import engines.helpers.JavaScriptHelper;
 import manifold.ext.rt.api.This;
@@ -11,6 +12,7 @@ import org.springframework.util.StopWatch;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static common.core.contracts.IStepInfo.duration;
 import static engines.extensions.WebElementExtensions.getSelectedDropdownValue;
@@ -18,9 +20,19 @@ import static engines.extensions.WebElementExtensions.isAttributePresent;
 
 public class BasePageActions extends BasePage {
     // region Waits
-    public <TPage extends BasePage> TPage ImplicitlyWaitForPageToBeReady(Class<TPage> pageClass, int seconds) throws InterruptedException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Thread.sleep(seconds * 1000L);
-        return pageClass.getDeclaredConstructor(WebDriver.class, WebDriverWait.class).newInstance(driver, wait);
+    public <TPage extends BasePage> TPage ImplicitlyWaitForPageToBeReady(Class<TPage> pageClass, int seconds) {
+        TPage page;
+
+        TestInMemoryParameters.getInstance().driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+        try {
+//            return pageClass.getDeclaredConstructor(WebDriver.class, WebDriverWait.class)
+//                            .newInstance(TestInMemoryParameters.getInstance().driver, wait);
+            page = pageClass.newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return page;
     }
 
     public void waitForPageToBeReady(By locator, String description, int timeout, boolean isProcessing, boolean shouldPass) throws Exception {
@@ -86,7 +98,7 @@ public class BasePageActions extends BasePage {
 
     // endregion
     // region Getters
-    public static String getValueEx(@This WebElement element) {
+    public String getValueEx(@This WebElement element) {
         try {
             String value = null;
 

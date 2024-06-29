@@ -1,0 +1,20 @@
+{
+  "systemConfiguration":
+  {
+    "tag": "Web",
+    "team": "Aleksandar",
+    "capabilities": [
+      {
+        "name": "SeleniumDriver",
+        "baseUrl": "https://woolsocks.eu/en-DE",
+        "timeout": "",
+        "appVersion": "latest",
+        "commandTimeOutInMinutes": 5,
+        "driverPath": "",
+        "driverType": "",
+        "testEnvironment": "local"
+      }
+    ]
+  },
+  "testResultPath": "/AutomationReports/Web/TestResults/"
+}

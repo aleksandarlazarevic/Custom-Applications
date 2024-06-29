@@ -1,7 +1,10 @@
 package engines.selenium.driverInitialization;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
+import common.core.TestInMemoryParameters;
+import common.core.configuration.ConfigurationManager;
 import engines.selenium.driverInitialization.browsers.Chrome;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -29,30 +32,29 @@ public class WebDriverFactory {
         return instance;
     }
 
-    public void initializeWebDriver() throws Exception {
-        try {
-            initializeWebDriver(0, 0);
-        } catch (Exception exception) {
-            throw new Exception("Unable to initialize WebDriver: %s" + exception.getMessage());
-        }
-    }
-
     public void initializeWebDriver(int timeoutInSeconds, int pageLoadTimeout) throws Exception {
+        String driverType = ConfigurationManager.getTestConfigValue(
+                TestInMemoryParameters.getInstance().getTestConfiguration(), "driverType");
+
         try {
             defaultWhenZero(timeoutInSeconds, 60);
             defaultWhenZero(pageLoadTimeout, 240);
+            System.setProperty("webdriver.chrome.silentOutput","true");
 
             elementTimeout = Duration.ofSeconds(timeoutInSeconds);
             WebDriverFactory.pageLoadTimeout = Duration.ofSeconds(pageLoadTimeout);
 
-            this.driver = Chrome.initialize();
+            if (driverType.equals("Chrome")) {
+                this.driver = Chrome.initialize();
+            } else {
+                throw new RuntimeException();
+            }
 
             this.driver.manage().timeouts().pageLoadTimeout(WebDriverFactory.pageLoadTimeout);
-            this.driver.manage().timeouts().implicitlyWait(elementTimeout);
-
-            this.driver.manage().window().maximize();
+            this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            TestInMemoryParameters.getInstance().driver = this.driver;
         } catch (Exception exception) {
-            throw new Exception("Unable to initialize WebDriver: %s" + exception.getMessage());
+            throw new Exception(String.format("Unable to initialize WebDriver: %s - %s", driverType, exception.getMessage()));
         }
     }
 
