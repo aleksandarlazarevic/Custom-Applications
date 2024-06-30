@@ -7,18 +7,17 @@ Feature: Tests for the first assignment
 
   Scenario: Sign in to Woolsocks
     Given 'Woolsocks' website is opened
-    When 'WoolsocksHomePage' page is displayed
-    And Click 'Sign In' button
+    When Accept all cookies
+    And Confirm that the selected country is correct
+    Then 'WoolsocksHomePage' page is displayed
+    When Click 'Sign In' button
     And User enters temporary obtained email address
     And Click 'Continue' button
     Then 'Login link is sent to' message is shown in a popup
-    When Open mailbox
-    And Find Verification Mail
-    Then Click 'Verify your email' button in the mail
+    When Verification mail is received and the link is clicked
+    Then Login succeeds
 
   Scenario: Play a song on YouTube
     Given 'YouTube' website is opened
     When Search for song 'Michael Buble Welcome to the jungle'
-    And Play the first found song
-    Then The song plays successfully
-
+    Then Play the first found song

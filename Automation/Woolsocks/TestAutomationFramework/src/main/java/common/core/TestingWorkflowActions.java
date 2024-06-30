@@ -160,13 +160,6 @@ public class TestingWorkflowActions implements ITestWorkflow {
 
         return propertyValue;
     }
-
-    private String getTestingPlatform() {
-        String platformName = getConfigurationProperty("platformName");
-
-        return platformName;
-    }
-
     // endregion
     // region Test data actions
     private static void setTestStatus() {
@@ -249,7 +242,6 @@ public class TestingWorkflowActions implements ITestWorkflow {
     private static void createLogFile() {
         LoggingManager.endTestExecution(TestData.getInstance());
     }
-
     // endregion
     // endregion
 }

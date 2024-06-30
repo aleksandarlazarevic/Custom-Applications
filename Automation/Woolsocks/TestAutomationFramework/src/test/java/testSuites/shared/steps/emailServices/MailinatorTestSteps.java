@@ -48,7 +48,8 @@ public class MailinatorTestSteps extends EmailServiceOperator {
                     clickOnEmail(TestInMemoryParameters.getInstance().emailSender).
                     ImplicitlyWaitForPageToBeReady(Mailinator.class, 3).
                     verifyEmailBodyContent(TestInMemoryParameters.getInstance().emailText).
-                    ImplicitlyWaitForPageToBeReady(Mailinator.class, 3);
+                    ImplicitlyWaitForPageToBeReady(Mailinator.class, 3).
+                    clickVerificationLink(TestInMemoryParameters.getInstance().verificationLink);
         }
         catch (Exception exception) { }
     }

@@ -13,4 +13,10 @@ public class EmailServiceTests {
         emailServiceTestSteps.getEmailAddress();
         CommonBrowserActions.closeBrowser();
     }
+
+    public static void clickOnLoginVerificationLink() {
+        EmailServiceTestSteps emailServiceTestSteps = new EmailServiceTestSteps();
+        emailServiceTestSteps.initialize();
+        emailServiceTestSteps.verifyEmailNotificationContent();
+    }
 }

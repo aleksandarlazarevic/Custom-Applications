@@ -48,7 +48,7 @@ public class Mailinator extends BasePageActions {
         clickEx(this.go, "Go", false);
         return this;
     }
-    
+
     public Mailinator clickOnEmail(String subject) throws Exception {
         List<WebElement> rows = this.emailListContainer.findElements(By.xpath("./tbody/tr"));
         WebElement emailRow = rows.stream().map(x -> x.findElement(By.xpath("./td[3]"))).findFirst().get();
@@ -86,6 +86,18 @@ public class Mailinator extends BasePageActions {
         String email = getValueEx(this.notificationEmailContent);
         Assertions.assertTrue(email.contains(text), String.format("Email body does not contain expected text! \nExpected: {0} \nActual: {1}", text, email));
         return this;
+    }
+
+    public String clickVerificationLink(String text) {
+        WebDriverFactory.getThreadSafeInstance().driver.switchTo().frame("html_msg_body");
+
+        WebElement textElement = WebDriverFactory.getThreadSafeInstance().driver.findElement(By.xpath(String.format("//*[contains(text(), '{0}')]", text)));
+
+        if (textElement == null) {
+            throw new NotFoundException(String.format("Failed to locate '{0}' in the content", text));
+        }
+
+        return textElement.getText();
     }
 
     public Mailinator clikOnPublicInbox() {

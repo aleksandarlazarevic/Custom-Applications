@@ -7,9 +7,5 @@ public abstract class EmailServiceOperator extends BasePageActions {
 
     public abstract void saveGeneratedEmail();
 
-    public abstract void getVerificationCodeFromEmail();
-
     public abstract void verifyEmailNotificationContent();
-
-    public abstract void deleteAllEmailsFromInbox();
 }

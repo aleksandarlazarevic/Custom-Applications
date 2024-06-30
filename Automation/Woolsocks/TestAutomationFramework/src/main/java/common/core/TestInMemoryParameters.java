@@ -21,7 +21,7 @@ public class TestInMemoryParameters {
     public String emailSender;
     public String emailText;
     public String verificationSenderAddress;
-    public String verificationCode;
+    public String verificationLink;
     public String url;
 
     private String testResultsDirectory = "";
