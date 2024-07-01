@@ -3,8 +3,9 @@ package testSuites.web.steps;
 import com.google.common.reflect.ClassPath;
 import common.utilities.LoggingManager;
 import engines.selenium.base.BasePage;
+import testSuites.shared.BaseUtilities;
 
-public class Utilities {
+public class Utilities  extends BaseUtilities {
     public <TPage extends BasePage> TPage getPage(Class<TPage> pageToCast) {
         TPage returnPage;
 

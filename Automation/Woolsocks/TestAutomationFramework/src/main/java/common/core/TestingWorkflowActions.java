@@ -14,6 +14,7 @@ import io.cucumber.core.backend.TestCaseState;
 import io.cucumber.java.Scenario;
 import io.cucumber.plugin.event.PickleStepTestStep;
 import io.cucumber.plugin.event.TestCase;
+import reporting.ReportManager;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -30,15 +31,17 @@ import java.util.stream.Collectors;
 public class TestingWorkflowActions implements ITestWorkflow {
     public ArrayList<IEngineManager> engines;
     public TestStepInfo testStepInfo;
+    public ReportManager reportingManager;
 
     // region Test run setup
     public void testExecutionInitialization() {
         setUpTestConfiguration();
         setUpRootTestingDirectory();
+        setUpReporting();
     }
 
     public void testExecutionFinalization() {
-
+        createTestReport();
     }
 
     // endregion
@@ -46,6 +49,7 @@ public class TestingWorkflowActions implements ITestWorkflow {
     public void testScenarioInitialization(Scenario scenario) {
         startTestEngine();
         setUpTestData(scenario);
+        reportingManager.createTestCase(TestData.getInstance());
     }
 
     public void testScenarioFinalization(Scenario scenario) {
@@ -60,6 +64,7 @@ public class TestingWorkflowActions implements ITestWorkflow {
     @Override
     public void testStepInitialization(Scenario scenario) {
         getTestStepInfo(scenario);
+        createTestStepInTheReportFile();
     }
 
     @Override
@@ -169,8 +174,6 @@ public class TestingWorkflowActions implements ITestWorkflow {
     public void setUpTestData(Scenario scenario) {
         TestData.initialize(scenario);
         TestData.getInstance().testData.testRunStartTime = LocalDateTime.now();
-        LoggingManager.beginTestExecution(TestData.getInstance().testData);
-
         createTestResultsDirectory();
     }
 
@@ -242,6 +245,21 @@ public class TestingWorkflowActions implements ITestWorkflow {
     private static void createLogFile() {
         LoggingManager.endTestExecution(TestData.getInstance());
     }
+    // endregion
+    // region Reporting actions
+    private void setUpReporting() {
+        String reportPath = TestInMemoryParameters.getInstance().getRootTestDirectory() + "/TestResults.html";
+        reportingManager = new ReportManager(reportPath);
+    }
+
+    private void createTestStepInTheReportFile() {
+        reportingManager.createTestStep();
+    }
+
+    private void createTestReport() {
+        reportingManager.createReport();
+    }
+
     // endregion
     // endregion
 }

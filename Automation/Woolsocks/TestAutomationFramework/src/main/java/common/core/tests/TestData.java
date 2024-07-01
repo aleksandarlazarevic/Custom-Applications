@@ -1,10 +1,14 @@
 package common.core.tests;
 
 import common.core.TestInMemoryParameters;
+import common.core.contracts.IRunnableAction;
+import common.core.contracts.IRunnableActionWithArgument;
+import common.core.contracts.IRunnableActionWithArguments;
 import common.utilities.LoggingManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import io.cucumber.java.Scenario;
+import reporting.ReportManager;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -67,6 +71,54 @@ public class TestData {
     }
 
     // region Methods
+    public TestState runStep(IRunnableAction action, TestStepInfo stepInfo) {
+        try {
+            if (!shouldTheStepBeExecuted(stepInfo)) {
+                action.performOperation();
+                stepInfo.status = TestState.PASSED;
+                ReportManager.setTestStepOutcome(stepInfo);
+            }
+        } catch (Exception ex) {
+            handleException(ex, stepInfo);
+        } finally {
+            finalizeStep(stepInfo);
+        }
+
+        return stepInfo.status;
+    }
+
+    public TestState runStep(IRunnableActionWithArgument action, String argument, TestStepInfo stepInfo) {
+        try {
+            if (!shouldTheStepBeExecuted(stepInfo)) {
+                action.performOperation(argument);
+                stepInfo.status = TestState.PASSED;
+                ReportManager.setTestStepOutcome(stepInfo);
+            }
+        } catch (Exception ex) {
+            handleException(ex, stepInfo);
+        } finally {
+            finalizeStep(stepInfo);
+        }
+
+        return stepInfo.status;
+    }
+
+    public TestState runStep(IRunnableActionWithArguments action, String argument1, String argument2, TestStepInfo stepInfo) {
+        try {
+            if (!shouldTheStepBeExecuted(stepInfo)) {
+                action.performOperation(argument1, argument2);
+                stepInfo.status = TestState.PASSED;
+                ReportManager.setTestStepOutcome(stepInfo);
+            }
+        } catch (Exception ex) {
+            handleException(ex, stepInfo);
+        } finally {
+            finalizeStep(stepInfo);
+        }
+
+        return stepInfo.status;
+    }
+
     public static void initialize(Scenario scenario) {
         if (testData == null) {
             testData = new TestData(scenario);

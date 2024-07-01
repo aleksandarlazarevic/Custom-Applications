@@ -6,3 +6,4 @@ obj/
 *target/
 *.idea/
 Automation/Woolsocks/TestAutomationFramework/*.log
+/Automation/Woolsocks/TestAutomationFramework/AutomationReports/*
