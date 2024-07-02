@@ -1,8 +1,10 @@
 package common.core;
 
 import common.core.configuration.TestConfiguration;
+import io.restassured.response.Response;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class TestInMemoryParameters {
     private TestConfiguration testConfiguration;
     private String testRunParametersLocation;
     private String rootTestDirectory;
+    private Response currentApiResponse;
+    private ResultSet currentSqlResponse;
 
     // endregion
     // region Methods
@@ -88,6 +92,22 @@ public class TestInMemoryParameters {
 
     public void setRootTestDirectory(String rootTestDirectory) {
         this.rootTestDirectory = rootTestDirectory;
+    }
+
+    public void setCurrentApiResponse(Response currentApiResponse) {
+        this.currentApiResponse = currentApiResponse;
+    }    
+    
+    public Response getCurrentApiResponse() {
+        return currentApiResponse;
+    }
+
+    public ResultSet getCurrentSqlResponse() {
+        return currentSqlResponse;
+    }    
+    
+    public void setCurrentSqlResponse(ResultSet currentSqlResponse) {
+        this.currentSqlResponse = currentSqlResponse;
     }
 
     // endregion

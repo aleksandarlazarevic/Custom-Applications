@@ -41,6 +41,18 @@ public class JsonManager {
         return returnObject;
     }
 
+    public static String objectToJson(Object object) {
+        String returnObject;
+
+        try {
+            returnObject = new Gson().toJson(object);
+        } catch (Exception exception) {
+            throw new RuntimeException("Unable to parse object to json: " + exception.getMessage());
+        }
+
+        return returnObject;
+    }
+
     public static boolean isValidJson(String stringToCheck) {
         try {
             gson.fromJson(stringToCheck, Object.class);

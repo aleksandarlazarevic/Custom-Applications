@@ -31,6 +31,60 @@ public class RestApiManager {
 
         return response;
     }
+
+    public static Response getData(String endpoint) {
+        RestAssured.baseURI = TestInMemoryParameters.getInstance().getApiEndpoint();
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get(endpoint)
+                .then()
+                .extract().response();
+
+        return response;
+    }
+    // endregion
+    // region POST requests
+    public static Response postData(String endpoint, String requestBody) {
+        RestAssured.baseURI = TestInMemoryParameters.getInstance().getApiEndpoint();
+
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .and()
+                .body(requestBody)
+                .when()
+                .post(endpoint)
+                .then()
+                .extract().response();
+
+        return response;
+    }
+    // endregion
+    // region PUT requests
+    public static Response putData(String endpoint, String newBody) {
+        RestAssured.baseURI = TestInMemoryParameters.getInstance().getApiEndpoint();
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(newBody)
+                .when()
+                .put(endpoint)
+                .then()
+                .extract().response();
+
+        return response;
+    }
+    // endregion
+    // region DELETE requests
+    public static Response deleteData(String endpoint) {
+        RestAssured.baseURI = TestInMemoryParameters.getInstance().getApiEndpoint();
+        Response response = given()
+                .when()
+                .delete(endpoint)
+                .then()
+                .extract().response();
+
+        return response;
+    }
     // endregion
     // endregion
 }
