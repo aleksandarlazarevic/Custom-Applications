@@ -1,0 +1,15 @@
+{
+  "systemConfiguration":
+    {
+      "tag": "API",
+      "capabilities": [
+        {
+          "name": "APIDriver",
+          "baseUrl": "",
+          "platformName": "REST API",
+          "timeout": 5000
+        }
+      ]
+    },
+  "testResultPath": "/AutomationReports/API/TestResults/"
+}

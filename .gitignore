@@ -3,5 +3,7 @@ bin/
 obj/
 .suo
 .suo
-/Automation/Bosch/TestAutomation/.idea/
-/Automation/Bosch/TestAutomation/target/
+*target/
+*.idea/
+Automation/Woolsocks/TestAutomationFramework/*.log
+/Automation/Woolsocks/TestAutomationFramework/AutomationReports/*
