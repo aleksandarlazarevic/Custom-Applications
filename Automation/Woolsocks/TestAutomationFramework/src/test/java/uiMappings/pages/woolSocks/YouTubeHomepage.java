@@ -8,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class YouTubeHomepage extends BasePageActions {
     // region Fields and Properties
-    @FindBy(id = "search")
+    @FindBy(xpath = "//input[@id='search']")
     public WebElement searchTextBox;
 
-    @FindBy(id = "search-icon-legacy")
+    @FindBy(xpath = "//button[@id='search-icon-legacy']")
     public WebElement searchButton;
 
     @FindBy(xpath = "//ytd-video-renderer[@class='style-scope ytd-item-section-renderer'][1]")
@@ -24,6 +24,7 @@ public class YouTubeHomepage extends BasePageActions {
 
     public void searchForSong(String songName) {
         sendKeysEx(searchTextBox, songName, "searchTextBox", false, false);
+        clickEx(searchButton, "searchButton", false);
     }
 
     public void playTheFirstSong() {

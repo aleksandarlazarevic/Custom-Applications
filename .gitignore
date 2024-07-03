@@ -7,3 +7,4 @@ obj/
 *.idea/
 Automation/Woolsocks/TestAutomationFramework/*.log
 /Automation/Woolsocks/TestAutomationFramework/AutomationReports/*
+/Automation/Woolsocks/TestAutomationFramework/testParameters.txt
