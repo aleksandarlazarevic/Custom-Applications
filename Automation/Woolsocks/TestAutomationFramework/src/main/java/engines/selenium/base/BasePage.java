@@ -34,8 +34,7 @@ public class BasePage extends WebElementExtensions {
     }
 
     public boolean isPageDisplayed() {
-        boolean isPageDisplayed = true;
-        isPageDisplayed = currentPage.isPageDisplayed();
+        boolean isPageDisplayed = currentPage.isPageDisplayed();
 
         return isPageDisplayed;
     }

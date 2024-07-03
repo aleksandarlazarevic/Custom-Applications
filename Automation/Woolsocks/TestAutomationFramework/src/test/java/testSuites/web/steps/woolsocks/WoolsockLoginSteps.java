@@ -9,6 +9,11 @@ import testSuites.shared.tests.EmailServiceTests;
 import testSuites.web.steps.Utilities;
 import uiMappings.pages.woolSocks.WoolsocksHomePage;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class WoolsockLoginSteps extends Utilities {
     @And("User enters temporary obtained email address")
     public void userEntersTemporaryObtainedEmailAddress() {
@@ -16,7 +21,13 @@ public class WoolsockLoginSteps extends Utilities {
     }
 
     private void enterTemporaryEmailAddress() {
-        String generatedEmail = TestInMemoryParameters.getInstance().generatedEmailAddress;
+        String generatedEmail = null;
+        try {
+            generatedEmail = Files.readString(Path.of("testParameters.txt"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         getPage(WoolsocksHomePage.class).enterEmail(generatedEmail);
     }
 

@@ -9,6 +9,10 @@ import org.junit.Assert;
 import testSuites.shared.tests.EmailServiceTests;
 import testSuites.web.steps.Utilities;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class CommonTestSteps extends Utilities {
     @Given("Obtain a temporary email address")
     public void obtainATemporaryEmailAddress() {
@@ -71,6 +75,15 @@ public class CommonTestSteps extends Utilities {
 
     private void verifyThatTemporaryEmailIsSet() {
         String generatedEmail = TestInMemoryParameters.getInstance().generatedEmailAddress;
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("testParameters.txt");
+            writer.write(generatedEmail);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         Assert.assertNotEquals("Temporary email has not been generated properly", "", generatedEmail);
     }
 }

@@ -14,11 +14,12 @@ public class WoolsocksHomePage extends BasePageActions {
     @FindBy(xpath = "//button[contains(@class,'LocaleConfirmSticker_button__QIa8N m-r-8')]")
     public WebElement confirmSelectedCountryButton;
 
-    @FindBy(css = "button[data-testid='sign-up-in-button']")
+    @FindBy(xpath = "(//button[(@data-testid='sign-up-in-button')])[5]")
     public WebElement signInButton;
-    @FindBy(id = "emailAddressInput")
+    @FindBy(xpath = "//input[@id='emailAddressInput']")
     public WebElement yourEmailTextBox;
-    @FindBy(id = "auth-options-continue-with-email")
+
+    @FindBy(xpath = "//button[@id='auth-options-continue-with-email']")
     public WebElement continueButton;
 
     @FindBy(xpath = "//button[contains(@class,'StepEmailVerified_button__WrrPC')]")
@@ -85,6 +86,12 @@ public class WoolsocksHomePage extends BasePageActions {
         sendKeysEx(firstNameInput, firstName, "firstNameInput", false, false);
         sendKeysEx(lastNameInput, lastName, "lastNameInput", false, false);
         clickEx(continueUserDataButton, "continueUserDataButton", false);
+    }
+
+    public boolean isPageDisplayed() {
+        boolean isPageDisplayed = isDisplayedEx(signInButton, "signInButton", false, false, 2);
+
+        return isPageDisplayed;
     }
 // endregion
 }
