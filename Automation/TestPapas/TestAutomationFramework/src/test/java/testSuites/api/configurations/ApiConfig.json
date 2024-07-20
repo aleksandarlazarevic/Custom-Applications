@@ -1,0 +1,16 @@
+{
+  "systemConfiguration":
+    {
+      "tag": "API",
+      "capabilities": [
+        {
+          "name": "APIDriver",
+          "baseUrl": "",
+          "platformName": "REST API",
+          "apiKey": "live_US1ExpptGgQydDC7sUWGVH86DScLF2GLnPbuH1A18xFMXNS0MKhh1VjqZqaEXwls",
+          "timeout": 5000
+        }
+      ]
+    },
+  "testResultPath": "/AutomationReports/API/TestResults/"
+}
