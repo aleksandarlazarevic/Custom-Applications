@@ -1,0 +1,21 @@
+{
+  "systemConfiguration":
+  {
+    "tag": "Web",
+    "team": "Aleksandar",
+    "capabilities": [
+      {
+        "name": "SeleniumDriver",
+        "baseUrl": "https://google.com",
+        "timeout": "",
+        "appVersion": "latest",
+        "commandTimeOutInMinutes": 5,
+        "driverPath": "",
+        "driverType": "Chrome",
+        "apiKey": "live_US1ExpptGgQydDC7sUWGVH86DScLF2GLnPbuH1A18xFMXNS0MKhh1VjqZqaEXwls",
+        "testEnvironment": "local"
+      }
+    ]
+  },
+  "testResultPath": "/AutomationReports/Web/TestResults/"
+}
